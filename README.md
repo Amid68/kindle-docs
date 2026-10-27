@@ -32,6 +32,17 @@ Der GitHub-Workflow `.github/workflows/build.yml` läuft jede Nacht um 02:17 UTC
 Eine Änderung an `build.py` oder `epub.css` baut alle Bücher neu, eine Änderung an `books.toml`
 nur die betroffenen.
 
+### Cache
+
+- `.cache/pages`: jede abgerufene Seite, zlib-komprimiert, mit ETag/Last-Modified. Wird zwischen
+  den Läufen in GitHub gespeichert. Damit fragt der nächtliche Lauf nur „geändert?“ und bekommt
+  meist ein kurzes „304 unverändert“ zurück.
+- `.cache/media`: Bilder. Nur lokal; in GitHub werden sie nur für Bücher geladen, die sich geändert
+  haben.
+- Antwortet ein Server mit 429 (zu viele Anfragen), wird für diesen Host automatisch langsamer
+  angefragt. Bleibt eine Seite vorübergehend unerreichbar, wird die zwischengespeicherte Kopie
+  genommen; die Änderung kommt dann in der nächsten Nacht.
+
 Von Hand starten: GitHub → Actions → build → **Run workflow** (mit „force“ wird alles neu gebaut).
 
 ## Ein Buch hinzufügen

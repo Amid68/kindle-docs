@@ -79,11 +79,13 @@ class Fetcher:
 
     def __init__(self, cache_dir, delay=0.25):
         self.cache = Path(cache_dir)
-        self.cache.mkdir(parents=True, exist_ok=True)
+        for sub in ("pages", "media"):
+            (self.cache / sub).mkdir(parents=True, exist_ok=True)
         self.delay = delay
         self.local = threading.local()
         self.host_lock = {}
         self.host_next = {}
+        self.host_delay = {}
         self.guard = threading.Lock()
 
     def session(self):
@@ -94,7 +96,7 @@ class Fetcher:
             self.local.s = s
         return s
 
-    def _wait(self, host):
+    def _wait(self, host, revalidate):
         with self.guard:
             lock = self.host_lock.setdefault(host, threading.Lock())
         with lock:
@@ -102,11 +104,13 @@ class Fetcher:
             nxt = self.host_next.get(host, 0)
             if nxt > now:
                 time.sleep(nxt - now)
-            self.host_next[host] = time.monotonic() + self.delay
+            base = 0.1 if revalidate else self.delay
+            self.host_next[host] = time.monotonic() + max(base, self.host_delay.get(host, 0))
 
     def get(self, url, binary=False):
         key = hashlib.sha1(url.encode()).hexdigest()
-        body_f, meta_f = self.cache / key, self.cache / (key + ".json")
+        folder = self.cache / ("media" if binary else "pages")
+        body_f, meta_f = folder / (key + ".z"), folder / (key + ".json")
         meta = json.loads(meta_f.read_text()) if meta_f.exists() and body_f.exists() else None
         headers = {}
         if meta:
@@ -114,27 +118,39 @@ class Fetcher:
                 headers["If-None-Match"] = meta["etag"]
             if meta.get("last_modified"):
                 headers["If-Modified-Since"] = meta["last_modified"]
-        r = None
-        for attempt in range(4):
-            self._wait(urllib.parse.urlsplit(url).netloc)
+        host = urllib.parse.urlsplit(url).netloc
+        r, err = None, None
+        for attempt in range(6):
+            self._wait(host, bool(headers))
             try:
                 r = self.session().get(url, headers=headers, timeout=40)
             except requests.RequestException as e:
-                r = None
-                err = e
+                r, err = None, e
             if r is not None and r.status_code not in (429, 500, 502, 503, 504):
                 break
-            time.sleep(2 * (attempt + 1))
-        if r is None:
-            log("fetch failed", url, err)
+            pause = 5 * (attempt + 1)
+            if r is not None and r.status_code in (429, 503):
+                with self.guard:
+                    self.host_delay[host] = min(3.0, max(0.5, self.host_delay.get(host, 0) * 2))
+                retry = r.headers.get("Retry-After", "")
+                if retry.isdigit():
+                    pause = min(120, int(retry) + 1)
+            time.sleep(pause)
+        ok = r is not None and r.status_code in (200, 304)
+        transient = r is None or r.status_code in (429, 500, 502, 503, 504)
+        if not ok and meta and transient:
+            log("using cached copy,", url, "answered", r.status_code if r is not None else err)
+            r = None
+        elif not ok:
+            log("fetch failed", url, r.status_code if r is not None else err)
             return None
-        if r.status_code == 304 and meta:
-            data = body_f.read_bytes()
+        if r is None or (r.status_code == 304 and meta):
+            data = zlib.decompress(body_f.read_bytes())
         elif r.status_code == 200:
             data = r.content
             meta = {"etag": r.headers.get("ETag"), "last_modified": r.headers.get("Last-Modified"),
                     "final_url": r.url, "ctype": r.headers.get("Content-Type", "")}
-            body_f.write_bytes(data)
+            body_f.write_bytes(zlib.compress(data, 6))
             meta_f.write_text(json.dumps(meta))
         else:
             return None
@@ -311,6 +327,8 @@ def crawl(fetcher, book):
         extra = [u for u in sitemap_urls(fetcher, book) if page_key(u) not in info]
         for u in extra:
             k = page_key(u)
+            if k in info:
+                continue
             path = urllib.parse.urlsplit(u).path
             best, best_len = None, -1
             for i, ok in enumerate(order):
@@ -332,12 +350,13 @@ def crawl(fetcher, book):
                 continue
             soup = soup_of(got[1])
             pages[k] = (got[0], soup, find_content(soup, book.cfg.get("content")))
-    result = []
+    result, seen = [], set()
     depths = [info[k]["depth"] for k in order if pages.get(k)]
     base = min(depths) if depths else 0
     for k in order:
-        if pages.get(k):
+        if pages.get(k) and page_key(pages[k][0]) not in seen:
             final, soup, content = pages[k]
+            seen.add(page_key(final))
             result.append({"key": k, "url": final, "soup": soup, "content": content,
                            "level": max(1, min(3, info[k]["depth"] - base + 1)) if k != start_k else 1})
     return result

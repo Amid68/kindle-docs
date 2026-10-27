@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Veröffentlichten Stand holen
         run: |
@@ -36,15 +36,18 @@ jobs:
             git -C site remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
           fi
 
+      # Seiten-Cache (komprimiert, mit ETag/Last-Modified): Server antworten meist nur
+      # "unverändert". Bilder bleiben draußen, sie werden nur für geänderte Bücher gebraucht.
       - uses: actions/cache@v4
         with:
-          path: .cache
-          key: http-${{ github.run_id }}
-          restore-keys: http-
+          path: .cache/pages
+          key: pages-${{ github.run_id }}
+          restore-keys: pages-
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+          cache: pip
 
       - name: Abhängigkeiten
         run: |
@@ -52,7 +55,7 @@ jobs:
           pip install -q -r requirements.txt
 
       - name: Bauen
-        run: python build.py --jobs 8 ${{ inputs.force && '--force' || '' }}
+        run: python build.py --jobs 12 ${{ inputs.force && '--force' || '' }}
 
       - name: Veröffentlichen, wenn sich etwas geändert hat
         run: |
