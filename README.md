@@ -22,11 +22,15 @@ noch einmal herunterladen und die alte Datei ersetzen lassen.
 Der GitHub-Workflow `.github/workflows/build.yml` läuft jede Nacht um 02:17 UTC:
 
 1. Er holt den veröffentlichten Stand (Branch `gh-pages`) und den HTTP-Cache der letzten Nacht.
-2. `build.py` geht jede Doku-Seite in Lesereihenfolge ab. Dank ETag/Last-Modified antworten die
+2. Für jedes Buch mit `git` in `books.toml` fragt er die GitHub-API nach dem letzten Commit im
+   Doku-Ordner. Gibt es keinen neuen, wird das Buch übersprungen, ohne die Website abzurufen.
+   Ein Commit gilt erst 6 Stunden nach dem Abruf als sicher (so lange darf der Deploy der Website
+   dauern), und jedes Buch wird spätestens nach 7 Tagen trotzdem neu geprüft.
+3. Alle anderen Bücher: `build.py` geht jede Doku-Seite in Lesereihenfolge ab. Dank ETag/Last-Modified antworten die
    meisten Server nur mit „unverändert“, das kostet fast nichts.
-3. Aus dem bereinigten Text wird ein Fingerabdruck berechnet. Ist er gleich dem veröffentlichten,
+4. Aus dem bereinigten Text wird ein Fingerabdruck berechnet. Ist er gleich dem veröffentlichten,
    wird das Buch übersprungen: keine Bilder laden, kein pandoc, keine neue Datei.
-4. Nur wenn sich mindestens eine Datei geändert hat, wird `gh-pages` neu veröffentlicht. Ohne
+5. Nur wenn sich mindestens eine Datei geändert hat, wird `gh-pages` neu veröffentlicht. Ohne
    Änderung passiert nichts.
 
 Eine Änderung an `epub.css` oder an `OUTPUT_VERSION` in `build.py` baut alle Bücher neu, eine Änderung an `books.toml`
@@ -37,6 +41,7 @@ nur die betroffenen.
 - `.cache/pages`: jede abgerufene Seite, zlib-komprimiert, mit ETag/Last-Modified. Wird zwischen
   den Läufen in GitHub gespeichert. Damit fragt der nächtliche Lauf nur „geändert?“ und bekommt
   meist ein kurzes „304 unverändert“ zurück.
+- `.cache/git-state.json`: pro Buch der zuletzt geprüfte Commit und wann. Liegt mit im GitHub-Cache.
 - `.cache/media`: Bilder. Nur lokal; in GitHub werden sie nur für Bücher geladen, die sich geändert
   haben.
 - Antwortet ein Server mit 429 (zu viele Anfragen), wird für diesen Host automatisch langsamer

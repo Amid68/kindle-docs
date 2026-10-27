@@ -161,6 +161,65 @@ class Fetcher:
         return meta["final_url"], data.decode("utf-8", "replace")
 
 
+class GitWatch:
+    """Letzter Commit im Doku-Ordner des Projekts, über die GitHub-API (ein Aufruf pro Buch)."""
+
+    def __init__(self):
+        self.s = requests.Session()
+        self.s.headers.update({"Accept": "application/vnd.github+json", "User-Agent": UA})
+        token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+        if not token and shutil.which("gh"):
+            token = subprocess.run(["gh", "auth", "token"], capture_output=True, text=True).stdout.strip()
+        if token:
+            self.s.headers["Authorization"] = f"Bearer {token}"
+        self.releases = {}
+        self.lock = threading.Lock()
+
+    def _get(self, path):
+        r = self.s.get("https://api.github.com/" + path, timeout=30)
+        r.raise_for_status()
+        return r.json()
+
+    def branch(self, repo, pattern, release_repo=None):
+        if "{minor}" not in pattern and "{version}" not in pattern:
+            return pattern
+        repo = release_repo or repo
+        with self.lock:
+            if repo not in self.releases:
+                self.releases[repo] = self._get(f"repos/{repo}/releases/latest")["tag_name"]
+        m = re.search(r"(\d+)\.(\d+)(?:\.(\d+))?", self.releases[repo])
+        return pattern.replace("{minor}", f"{m.group(1)}.{m.group(2)}").replace("{version}", m.group(0))
+
+    def head(self, book):
+        """(sha, Commit-Zeit) des letzten Commits im Doku-Ordner, None bei Fehlern."""
+        cfg = book.cfg
+        try:
+            if cfg.get("branch_pattern") and not cfg.get("git_branch"):
+                branch = latest_branch(f"https://github.com/{cfg['git']}.git", cfg["branch_pattern"])
+            else:
+                branch = self.branch(cfg["git"], cfg.get("git_branch", "main"), cfg.get("git_release_repo"))
+            commits = self._get(f"repos/{cfg['git']}/commits?sha={branch}&path={cfg['git_path']}&per_page=1")
+            c = commits[0]
+            when = dt.datetime.fromisoformat(c["commit"]["committer"]["date"].replace("Z", "+00:00"))
+            return c["sha"], when
+        except Exception as e:
+            log(book.id, "git check failed:", repr(e)[:160])
+            return None
+
+
+# Ein neuer Commit erscheint erst nach dem Deploy auf der Website. Nur einem Crawl trauen, der
+# mindestens so lange nach dem Commit lief; und jedes Buch spätestens nach einer Woche neu prüfen.
+DEPLOY_GRACE = dt.timedelta(hours=6)
+RECHECK_AFTER = dt.timedelta(days=7)
+
+
+def can_skip(state, head, config_hash, now):
+    if not state or not head or state.get("config") != config_hash or state.get("commit") != head[0]:
+        return False
+    crawled = dt.datetime.fromisoformat(state["crawled"])
+    return crawled - head[1] >= DEPLOY_GRACE and now - crawled < RECHECK_AFTER
+
+
 class Book:
     def __init__(self, cfg, defaults):
         self.cfg = {**defaults, **cfg}
@@ -904,14 +963,32 @@ def main():
     (site / "covers").mkdir(parents=True, exist_ok=True)
     manifest_f = site / "manifest.json"
     manifest = {b["id"]: b for b in json.loads(manifest_f.read_text())} if manifest_f.exists() else {}
-    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
-    now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    started = dt.datetime.now(dt.timezone.utc)
+    stamp = started.strftime("%Y-%m-%d")
+    now = started.strftime("%Y-%m-%dT%H:%M:%SZ")
     fetcher = Fetcher(args.cache)
     work = ROOT / ".work"
+    watch = GitWatch()
+    state_f = Path(args.cache) / "git-state.json"
+    git_state = json.loads(state_f.read_text()) if state_f.exists() else {}
+    skipped = []
 
     def run(book):
         try:
-            return book, build_book(fetcher, book, site / "books", work, stamp, manifest.get(book.id), args.force)
+            previous = manifest.get(book.id)
+            head = watch.head(book) if book.cfg.get("git") else None
+            config_hash = hashlib.sha256((BUILDER_VERSION + json.dumps(book.cfg, sort_keys=True)).encode()).hexdigest()
+            if (not args.force and previous and (site / "books" / f"{book.id}.epub").exists()
+                    and can_skip(git_state.get(book.id), head, config_hash, started)):
+                log("unchanged (no new commit)", book.id)
+                skipped.append(book.id)
+                return book, {**previous, "status": "unchanged"}
+            res = build_book(fetcher, book, site / "books", work, stamp, previous, args.force)
+            if res and head:
+                git_state[book.id] = {"commit": head[0], "crawled": started.isoformat(), "config": config_hash}
+            elif not head:
+                git_state.pop(book.id, None)
+            return book, res
         except Exception as e:
             log("FAILED (error)", book.id, repr(e))
             return book, None
@@ -939,6 +1016,8 @@ def main():
     manifest_f.write_text(json.dumps(sorted(entries, key=lambda b: b["id"]), indent=1) + "\n")
     write_catalog(site, entries, categories, args.base)
     (ROOT / "changes.txt").write_text("".join(f"{b}\n" for b in built))
+    state_f.write_text(json.dumps(git_state, indent=1, sort_keys=True) + "\n")
+    log(f"crawled: {len(books) - len(skipped)}, skipped without new commit: {len(skipped)}")
     log(f"catalog: {len(entries)} books, rebuilt: {', '.join(built) or 'none'}"
         + (f", failed: {', '.join(failed)}" if failed else ""))
     return 1 if failed and not entries else 0

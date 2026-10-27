@@ -38,9 +38,13 @@ jobs:
 
       # Seiten-Cache (komprimiert, mit ETag/Last-Modified): Server antworten meist nur
       # "unverändert". Bilder bleiben draußen, sie werden nur für geänderte Bücher gebraucht.
+      # git-state.json: welcher Commit pro Buch zuletzt geprüft wurde. Ohne neuen Commit im
+      # Doku-Ordner wird ein Buch gar nicht erst abgerufen.
       - uses: actions/cache@v4
         with:
-          path: .cache/pages
+          path: |
+            .cache/pages
+            .cache/git-state.json
           key: pages-${{ github.run_id }}
           restore-keys: pages-
 
@@ -72,6 +76,8 @@ jobs:
           pip install -q -r requirements.txt
 
       - name: Bauen
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: python build.py --jobs 12 ${{ inputs.force && '--force' || '' }}
 
       - name: Veröffentlichen, wenn sich etwas geändert hat

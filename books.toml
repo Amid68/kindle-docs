@@ -4,6 +4,9 @@
 #   method = "single": Doku, die nur aus einer einzigen Seite besteht
 #   method = "git-rst": Sphinx-Quellen direkt aus Git (repo, branch/branch_pattern, root, index)
 #   follow_content = true: auch Links im Seitentext folgen (Doku ohne Seitenmenü)
+#   git, git_path, git_branch: Repo und Ordner der Doku-Quellen. Ohne neuen Commit dort wird das
+#     Buch nachts übersprungen. "{minor}" bzw. "{version}" im Branch wird aus dem letzten Release ergänzt
+#     (release-{minor} -> release-3.5). git_release_repo, wenn die Releases in einem anderen Repo liegen.
 #   scope: nur URLs mit diesem Anfang gehören zum Buch (Standard: Ordner der Start-URL)
 
 categories = [
@@ -27,6 +30,9 @@ title = "Kubernetes Concepts"
 category = "Kubernetes"
 method = "print"
 start = "https://kubernetes.io/docs/concepts/_print/"
+git = "kubernetes/website"
+git_path = "content/en/docs/concepts"
+git_branch = "main"
 license = "© The Kubernetes Authors, CC BY 4.0."
 
 [[book]]
@@ -35,6 +41,9 @@ title = "Kubernetes Tasks"
 category = "Kubernetes"
 method = "print"
 start = "https://kubernetes.io/docs/tasks/_print/"
+git = "kubernetes/website"
+git_path = "content/en/docs/tasks"
+git_branch = "main"
 license = "© The Kubernetes Authors, CC BY 4.0."
 
 [[book]]
@@ -43,6 +52,9 @@ title = "Kubernetes Tutorials"
 category = "Kubernetes"
 method = "print"
 start = "https://kubernetes.io/docs/tutorials/_print/"
+git = "kubernetes/website"
+git_path = "content/en/docs/tutorials"
+git_branch = "main"
 license = "© The Kubernetes Authors, CC BY 4.0."
 
 [[book]]
@@ -51,6 +63,9 @@ title = "Kubernetes Setup"
 category = "Kubernetes"
 method = "print"
 start = "https://kubernetes.io/docs/setup/_print/"
+git = "kubernetes/website"
+git_path = "content/en/docs/setup"
+git_branch = "main"
 license = "© The Kubernetes Authors, CC BY 4.0."
 
 [[book]]
@@ -59,6 +74,9 @@ title = "kubectl Reference"
 category = "Kubernetes"
 method = "print"
 start = "https://kubernetes.io/docs/reference/kubectl/_print/"
+git = "kubernetes/website"
+git_path = "content/en/docs/reference/kubectl"
+git_branch = "main"
 license = "© The Kubernetes Authors, CC BY 4.0."
 
 [[book]]
@@ -66,6 +84,9 @@ id = "kustomize"
 title = "Kustomize"
 category = "Kubernetes"
 start = "https://kubectl.docs.kubernetes.io/references/kustomize/"
+git = "kubernetes-sigs/cli-experimental"
+git_path = "site"
+git_branch = "master"
 scope = "https://kubectl.docs.kubernetes.io/"
 
 [[book]]
@@ -73,18 +94,27 @@ id = "helm"
 title = "Helm"
 category = "Kubernetes"
 start = "https://helm.sh/docs/"
+git = "helm/helm-www"
+git_path = "docs"
+git_branch = "main"
 
 [[book]]
 id = "etcd"
 title = "etcd"
 category = "Kubernetes"
 start = "https://etcd.io/docs/v3.6/"
+git = "etcd-io/website"
+git_path = "content/en/docs/v3.6"
+git_branch = "main"
 
 [[book]]
 id = "talos"
 title = "Talos Linux"
 category = "Kubernetes"
 start = "https://docs.siderolabs.com/talos/latest/"
+git = "siderolabs/docs"
+git_path = "public/talos"
+git_branch = "main"
 scope = "https://docs.siderolabs.com/talos/"
 
 [[book]]
@@ -92,6 +122,9 @@ id = "kind"
 title = "kind"
 category = "Kubernetes"
 start = "https://kind.sigs.k8s.io/"
+git = "kubernetes-sigs/kind"
+git_path = "site/content/docs"
+git_branch = "main"
 scope = "https://kind.sigs.k8s.io/docs/"
 
 [[book]]
@@ -99,12 +132,18 @@ id = "k3s"
 title = "K3s"
 category = "Kubernetes"
 start = "https://docs.k3s.io/"
+git = "k3s-io/docs"
+git_path = "docs"
+git_branch = "main"
 
 [[book]]
 id = "crossplane"
 title = "Crossplane"
 category = "Kubernetes"
 start = "https://docs.crossplane.io/latest/"
+git = "crossplane/docs"
+git_path = "content"
+git_branch = "master"
 
 # ---- GitOps & CI/CD -----------------------------------------------------
 [[book]]
@@ -112,24 +151,36 @@ id = "argocd"
 title = "Argo CD"
 category = "GitOps & CI/CD"
 start = "https://argo-cd.readthedocs.io/en/stable/"
+git = "argoproj/argo-cd"
+git_path = "docs"
+git_branch = "release-{minor}"
 
 [[book]]
 id = "argo-workflows"
 title = "Argo Workflows"
 category = "GitOps & CI/CD"
 start = "https://argo-workflows.readthedocs.io/en/latest/"
+git = "argoproj/argo-workflows"
+git_path = "docs"
+git_branch = "main"
 
 [[book]]
 id = "argo-rollouts"
 title = "Argo Rollouts"
 category = "GitOps & CI/CD"
 start = "https://argo-rollouts.readthedocs.io/en/stable/"
+git = "argoproj/argo-rollouts"
+git_path = "docs"
+git_branch = "release-{minor}"
 
 [[book]]
 id = "flux"
 title = "Flux"
 category = "GitOps & CI/CD"
 start = "https://fluxcd.io/flux/"
+git = "fluxcd/website"
+git_path = "content/en/flux"
+git_branch = "main"
 
 [[book]]
 id = "tekton"
@@ -142,6 +193,9 @@ id = "github-actions"
 title = "GitHub Actions"
 category = "GitOps & CI/CD"
 start = "https://docs.github.com/en/actions"
+git = "github/docs"
+git_path = "content/actions"
+git_branch = "main"
 scope = "https://docs.github.com/en/actions"
 
 # ---- Networking & Ingress ----------------------------------------------
@@ -150,6 +204,9 @@ id = "cilium"
 title = "Cilium"
 category = "Networking & Ingress"
 start = "https://docs.cilium.io/en/stable/"
+git = "cilium/cilium"
+git_path = "Documentation"
+git_branch = "v{minor}"
 max_pages = 700
 
 [[book]]
@@ -157,42 +214,64 @@ id = "gateway-api"
 title = "Gateway API"
 category = "Networking & Ingress"
 start = "https://gateway-api.sigs.k8s.io/"
+git = "kubernetes-sigs/gateway-api"
+git_path = "site-src"
+git_branch = "main"
 
 [[book]]
 id = "ingress-nginx"
 title = "Ingress-NGINX"
 category = "Networking & Ingress"
 start = "https://kubernetes.github.io/ingress-nginx/"
+git = "kubernetes/ingress-nginx"
+git_path = "docs"
+git_branch = "main"
 
 [[book]]
 id = "traefik"
 title = "Traefik"
 category = "Networking & Ingress"
 start = "https://doc.traefik.io/traefik/"
+git = "traefik/traefik"
+git_path = "docs"
+git_branch = "v{minor}"
 
 [[book]]
 id = "metallb"
 title = "MetalLB"
 category = "Networking & Ingress"
 start = "https://metallb.io/"
+git = "metallb/metallb"
+git_path = "website"
+git_branch = "main"
 
 [[book]]
 id = "cert-manager"
 title = "cert-manager"
 category = "Networking & Ingress"
 start = "https://cert-manager.io/docs/"
+git = "cert-manager/website"
+git_path = "content/docs"
+git_branch = "master"
 
 [[book]]
 id = "istio"
 title = "Istio"
 category = "Networking & Ingress"
 start = "https://istio.io/latest/docs/"
+git = "istio/istio.io"
+git_path = "content/en/docs"
+git_branch = "release-{minor}"
+git_release_repo = "istio/istio"
 
 [[book]]
 id = "linkerd"
 title = "Linkerd"
 category = "Networking & Ingress"
 start = "https://linkerd.io/docs/overview/"
+git = "linkerd/website"
+git_path = "linkerd.io/content/docs"
+git_branch = "main"
 scope = "https://linkerd.io/docs/"
 
 [[book]]
@@ -208,6 +287,9 @@ id = "longhorn"
 title = "Longhorn"
 category = "Storage & Backup"
 start = "https://longhorn.io/docs/latest/"
+git = "longhorn/website"
+git_path = "content/docs"
+git_branch = "master"
 scope = "https://longhorn.io/docs/"
 
 [[book]]
@@ -215,6 +297,9 @@ id = "rook"
 title = "Rook"
 category = "Storage & Backup"
 start = "https://rook.io/docs/rook/latest-release/Getting-Started/intro/"
+git = "rook/rook"
+git_path = "Documentation"
+git_branch = "release-{minor}"
 scope = "https://rook.io/docs/rook/latest-release/"
 
 [[book]]
@@ -222,24 +307,36 @@ id = "velero"
 title = "Velero"
 category = "Storage & Backup"
 start = "https://velero.io/docs/main/"
+git = "vmware-tanzu/velero"
+git_path = "site/content/docs/main"
+git_branch = "main"
 
 [[book]]
 id = "cloudnative-pg"
 title = "CloudNativePG"
 category = "Storage & Backup"
 start = "https://cloudnative-pg.io/docs/current/"
+git = "cloudnative-pg/cloudnative-pg"
+git_path = "docs/src"
+git_branch = "release-{minor}"
 
 [[book]]
 id = "ceph"
 title = "Ceph"
 category = "Storage & Backup"
 start = "https://docs.ceph.com/en/latest/"
+git = "ceph/ceph"
+git_path = "doc"
+git_branch = "main"
 
 [[book]]
 id = "openzfs"
 title = "OpenZFS"
 category = "Storage & Backup"
 start = "https://openzfs.github.io/openzfs-docs/"
+git = "openzfs/openzfs-docs"
+git_path = "docs"
+git_branch = "master"
 
 # ---- Infrastructure as Code ----------------------------------------------
 [[book]]
@@ -247,6 +344,9 @@ id = "terraform"
 title = "Terraform"
 category = "Infrastructure as Code"
 start = "https://developer.hashicorp.com/terraform/docs"
+git = "hashicorp/web-unified-docs"
+git_path = "content/terraform"
+git_branch = "main"
 scope = ["https://developer.hashicorp.com/terraform/docs", "https://developer.hashicorp.com/terraform/language", "https://developer.hashicorp.com/terraform/cli"]
 
 [[book]]
@@ -254,6 +354,9 @@ id = "opentofu"
 title = "OpenTofu"
 category = "Infrastructure as Code"
 start = "https://opentofu.org/docs/"
+git = "opentofu/opentofu"
+git_path = "website/docs"
+git_branch = "v{minor}"
 
 [[book]]
 id = "ansible"
@@ -261,6 +364,8 @@ title = "Ansible"
 category = "Infrastructure as Code"
 method = "git-rst"
 start = "https://docs.ansible.com/projects/ansible/latest/"
+git = "ansible/ansible-documentation"
+git_path = "docs/docsite/rst"
 repo = "https://github.com/ansible/ansible-documentation.git"
 branch_pattern = "stable-\\d+\\.\\d+"
 root = "docs/docsite/rst"
@@ -273,6 +378,9 @@ id = "packer"
 title = "Packer"
 category = "Infrastructure as Code"
 start = "https://developer.hashicorp.com/packer/docs"
+git = "hashicorp/web-unified-docs"
+git_path = "content/packer"
+git_branch = "main"
 
 # ---- Containers & Linux ---------------------------------------------------
 [[book]]
@@ -280,6 +388,9 @@ id = "docker"
 title = "Docker"
 category = "Containers & Linux"
 start = "https://docs.docker.com/get-started/"
+git = "docker/docs"
+git_path = "content/manuals"
+git_branch = "main"
 scope = ["https://docs.docker.com/get-started/", "https://docs.docker.com/engine/", "https://docs.docker.com/build/", "https://docs.docker.com/compose/"]
 
 [[book]]
@@ -287,6 +398,9 @@ id = "podman"
 title = "Podman"
 category = "Containers & Linux"
 start = "https://docs.podman.io/en/latest/"
+git = "containers/podman"
+git_path = "docs"
+git_branch = "main"
 follow_content = true
 
 [[book]]
@@ -294,6 +408,9 @@ id = "containerd"
 title = "containerd"
 category = "Containers & Linux"
 start = "https://containerd.io/docs/"
+git = "containerd/containerd.io"
+git_path = "content/docs"
+git_branch = "main"
 
 [[book]]
 id = "proxmox"
@@ -313,6 +430,9 @@ id = "caddy"
 title = "Caddy"
 category = "Containers & Linux"
 start = "https://caddyserver.com/docs/"
+git = "caddyserver/website"
+git_path = "src/docs"
+git_branch = "master"
 
 [[book]]
 id = "haproxy"
@@ -341,6 +461,9 @@ id = "grafana"
 title = "Grafana"
 category = "Observability"
 start = "https://grafana.com/docs/grafana/latest/"
+git = "grafana/grafana"
+git_path = "docs/sources"
+git_branch = "release-{version}"
 max_pages = 500
 
 [[book]]
@@ -348,12 +471,18 @@ id = "loki"
 title = "Grafana Loki"
 category = "Observability"
 start = "https://grafana.com/docs/loki/latest/"
+git = "grafana/loki"
+git_path = "docs/sources"
+git_branch = "release-{minor}.x"
 
 [[book]]
 id = "opentelemetry"
 title = "OpenTelemetry"
 category = "Observability"
 start = "https://opentelemetry.io/docs/"
+git = "open-telemetry/opentelemetry.io"
+git_path = "content/en/docs"
+git_branch = "main"
 
 # ---- Security --------------------------------------------------------------
 [[book]]
@@ -362,6 +491,9 @@ title = "Kubernetes Security"
 category = "Security"
 method = "print"
 start = "https://kubernetes.io/docs/concepts/security/_print/"
+git = "kubernetes/website"
+git_path = "content/en/docs/concepts/security"
+git_branch = "main"
 license = "© The Kubernetes Authors, CC BY 4.0."
 
 [[book]]
@@ -369,12 +501,18 @@ id = "owasp-top10"
 title = "OWASP Top 10"
 category = "Security"
 start = "https://top10.owasp.org/2025/en/"
+git = "OWASP/Top10"
+git_path = "2025"
+git_branch = "master"
 
 [[book]]
 id = "owasp-cheatsheets"
 title = "OWASP Cheat Sheet Series"
 category = "Security"
 start = "https://cheatsheetseries.owasp.org/"
+git = "OWASP/CheatSheetSeries"
+git_path = "cheatsheets"
+git_branch = "master"
 max_pages = 200
 
 [[book]]
@@ -382,30 +520,45 @@ id = "falco"
 title = "Falco"
 category = "Security"
 start = "https://falco.org/docs/"
+git = "falcosecurity/falco-website"
+git_path = "content/en/docs"
+git_branch = "master"
 
 [[book]]
 id = "kyverno"
 title = "Kyverno"
 category = "Security"
 start = "https://kyverno.io/docs/"
+git = "kyverno/website"
+git_path = "src/content/docs"
+git_branch = "main"
 
 [[book]]
 id = "gatekeeper"
 title = "OPA Gatekeeper"
 category = "Security"
 start = "https://open-policy-agent.github.io/gatekeeper/website/docs/"
+git = "open-policy-agent/gatekeeper"
+git_path = "website/docs"
+git_branch = "master"
 
 [[book]]
 id = "opa"
 title = "Open Policy Agent"
 category = "Security"
 start = "https://www.openpolicyagent.org/docs"
+git = "open-policy-agent/opa"
+git_path = "docs"
+git_branch = "main"
 
 [[book]]
 id = "trivy"
 title = "Trivy"
 category = "Security"
 start = "https://trivy.dev/docs/latest/guide/"
+git = "aquasecurity/trivy"
+git_path = "docs"
+git_branch = "release/v{minor}"
 scope = "https://trivy.dev/docs/latest/"
 
 [[book]]
@@ -413,24 +566,36 @@ id = "vault"
 title = "HashiCorp Vault"
 category = "Security"
 start = "https://developer.hashicorp.com/vault/docs"
+git = "hashicorp/web-unified-docs"
+git_path = "content/vault"
+git_branch = "main"
 
 [[book]]
 id = "external-secrets"
 title = "External Secrets Operator"
 category = "Security"
 start = "https://external-secrets.io/latest/"
+git = "external-secrets/external-secrets"
+git_path = "docs"
+git_branch = "main"
 
 [[book]]
 id = "sops"
 title = "SOPS"
 category = "Security"
 start = "https://getsops.io/docs/"
+git = "getsops/docs"
+git_path = "content"
+git_branch = "main"
 
 [[book]]
 id = "sigstore"
 title = "Sigstore (cosign)"
 category = "Security"
 start = "https://docs.sigstore.dev/"
+git = "sigstore/docs"
+git_path = "content"
+git_branch = "main"
 
 [[book]]
 id = "keycloak"
