@@ -2,6 +2,7 @@
 #   method = "crawl" (Standard): Seitenmenü der Doku in Lesereihenfolge abgehen
 #   method = "print": Docsy-Druckansicht (_print), ein ganzer Abschnitt auf einer Seite
 #   method = "single": Doku, die nur aus einer einzigen Seite besteht
+#   method = "git-rst": Sphinx-Quellen direkt aus Git (repo, branch/branch_pattern, root, index)
 #   follow_content = true: auch Links im Seitentext folgen (Doku ohne Seitenmenü)
 #   scope: nur URLs mit diesem Anfang gehören zum Buch (Standard: Ordner der Start-URL)
 
@@ -258,9 +259,14 @@ start = "https://opentofu.org/docs/"
 id = "ansible"
 title = "Ansible"
 category = "Infrastructure as Code"
-start = "https://docs.ansible.com/projects/ansible/latest/getting_started/index.html"
-scope = "https://docs.ansible.com/projects/ansible/latest/"
-exclude = ["/collections/", "/porting_guides/", "/roadmap/", "/dev_guide/"]
+method = "git-rst"
+start = "https://docs.ansible.com/projects/ansible/latest/"
+repo = "https://github.com/ansible/ansible-documentation.git"
+branch_pattern = "stable-\\d+\\.\\d+"
+root = "docs/docsite/rst"
+index = "ansible_index"
+exclude = ["^community", "^dev_guide", "^porting_guides", "^roadmap", "^network", "^scenario_guides", "^collections/", "^getting_started_ee", "^galaxy", "^plugins/"]
+license = "© Ansible project contributors, GPLv3 / CC BY-SA 4.0."
 
 [[book]]
 id = "packer"
@@ -317,11 +323,10 @@ start = "https://docs.haproxy.org/3.2/configuration.html"
 
 [[book]]
 id = "nftables"
-title = "nftables"
+title = "nftables (nft manual)"
 category = "Containers & Linux"
-start = "https://wiki.nftables.org/wiki-nftables/index.php/Main_Page"
-scope = "https://wiki.nftables.org/wiki-nftables/index.php/"
-exclude = ["Special:", "Talk:", "User:", "action=", "File:"]
+method = "single"
+start = "https://www.netfilter.org/projects/nftables/manpage.html"
 
 # ---- Observability -------------------------------------------------------
 [[book]]

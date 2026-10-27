@@ -9,6 +9,7 @@ import hashlib
 import html
 import io
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -409,6 +410,105 @@ def single_page(fetcher, book):
              "content": find_content(soup, book.cfg.get("content")), "level": 1}]
 
 
+TOCTREE = re.compile(r"^\.\. toctree::[^\n]*\n((?:[ \t]+[^\n]*\n|[ \t]*\n)*)", re.M)
+PLAIN_ROLES = {"ref", "doc", "term", "envvar", "abbr", "manpage", "rfc", "pep"}
+
+
+def latest_branch(repo, pattern):
+    out = subprocess.run(["git", "ls-remote", "--heads", repo], capture_output=True, text=True, check=True).stdout
+    names = [line.split("refs/heads/")[1] for line in out.splitlines() if "refs/heads/" in line]
+    found = [n for n in names if re.fullmatch(pattern, n)]
+    return max(found, key=lambda n: [int(x) for x in re.findall(r"\d+", n)]) if found else None
+
+
+def git_rst_pages(book, cache_dir):
+    """Sphinx-Doku direkt aus dem Git-Repo: toctree-Reihenfolge abgehen, jede Datei mit pandoc wandeln.
+
+    Für Seiten, die Anfragen aus Rechenzentren abweisen (docs.ansible.com antwortet GitHub mit 429)."""
+    cfg = book.cfg
+    repo = cfg["repo"]
+    branch = latest_branch(repo, cfg["branch_pattern"]) if cfg.get("branch_pattern") else cfg.get("branch", "main")
+    root = cfg["root"].strip("/")
+    dest = Path(cache_dir) / "git" / book.id
+    if dest.exists():
+        shutil.rmtree(dest)
+    subprocess.run(["git", "clone", "-q", "--depth", "1", "--filter=blob:none", "--sparse", "--branch", branch,
+                    repo, str(dest)], check=True)
+    subprocess.run(["git", "-C", str(dest), "sparse-checkout", "set", root], check=True)
+    base = dest / root
+    slug = re.sub(r"^https://github.com/|\.git$", "", repo)
+    raw = f"https://raw.githubusercontent.com/{slug}/{branch}/{root}/"
+    log(book.id, "from", slug, branch)
+
+    order, seen = [], set()
+
+    def walk(doc, level):
+        if doc in seen or len(order) >= book.max_pages or any(x.search(doc) for x in book.exclude):
+            return
+        f = base / f"{doc}.rst"
+        if not f.exists():
+            return
+        seen.add(doc)
+        order.append((doc, level))
+        text = f.read_text(encoding="utf-8", errors="replace")
+        for block in TOCTREE.findall(text):
+            is_glob = ":glob:" in block
+            for line in block.splitlines():
+                entry = line.strip()
+                if not entry or entry.startswith(":"):
+                    continue
+                m = re.search(r"<([^>]+)>$", entry)
+                target = (m.group(1) if m else entry).strip()
+                if target.startswith(("http://", "https://")):
+                    continue
+                path = target.lstrip("/") if target.startswith("/") else \
+                    str(Path(doc).parent / target) if str(Path(doc).parent) != "." else target
+                path = os.path.normpath(path)
+                if is_glob and any(c in path for c in "*?["):
+                    for g in sorted(base.glob(path + ".rst")):
+                        walk(str(g.relative_to(base))[:-4], level + 1)
+                else:
+                    walk(path, level + 1)
+
+    walk(cfg.get("index", "index"), 0)
+    titles = {}
+    heading = r"([^\n]+)\n[=\-~^\"'`#*+<>]{3,}\n"
+    for doc, _ in order:
+        text = (base / f"{doc}.rst").read_text(encoding="utf-8", errors="replace")
+        m = re.search(r"^(?:[=\-~^\"'`#*+<>]{3,}\n)?" + heading, text, re.M)
+        if m:
+            titles["doc:" + doc] = re.sub(r"``(.*?)``", r"\1", m.group(1).strip())
+        for lm in re.finditer(r"^\.\. _([^:\n]+):\s*\n(?:\s*\n|\.\. _[^\n]+\n)*(?:[=\-~^\"'`#*+<>]{3,}\n)?" + heading,
+                              text, re.M):
+            titles["ref:" + lm.group(1).strip().lower()] = re.sub(r"``(.*?)``", r"\1", lm.group(2).strip())
+    pages = []
+    for doc, level in order:
+        f = base / f"{doc}.rst"
+        r = subprocess.run(["pandoc", "-f", "rst", "-t", "html", str(f.name)], cwd=f.parent,
+                           capture_output=True, text=True)
+        if r.returncode != 0 or not r.stdout.strip():
+            continue
+        soup = soup_of(f"<html><body><div id='rst'>{r.stdout}</div></body></html>")
+        for code in soup.select("code[role]"):
+            raw_text = code.get_text()
+            label = re.sub(r"\s*<[^>]*>\s*$", "", raw_text).lstrip("~!")
+            if "<" not in raw_text and code["role"] == "ref":
+                label = titles.get("ref:" + label.lower(), label)
+            elif "<" not in raw_text and code["role"] == "doc":
+                target = os.path.normpath(str(Path(doc).parent / label)) if not label.startswith("/") else label.lstrip("/")
+                label = titles.get("doc:" + target, label)
+            if code["role"] in PLAIN_ROLES:
+                code.replace_with(label)
+            else:
+                code.string = label
+        url = cfg.get("web", "").rstrip("/") + f"/{doc}.html" if cfg.get("web") else raw + f"{doc}.rst"
+        page = {"key": f"rst:{doc}", "url": raw + f"{doc}.rst", "soup": soup, "content": soup.select_one("#rst"),
+                "level": max(1, min(3, level))}
+        page["source"] = url
+        pages.append(page)
+    return pages
+
+
 def page_title(page):
     h = page["content"].find("h1")
     if h and h.get_text(strip=True):
@@ -637,7 +737,9 @@ def drop_nav_from_spine(epub):
 def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=False):
     """Ein Buch crawlen; das EPUB nur neu bauen, wenn sich der bereinigte Text vom veröffentlichten unterscheidet."""
     log("start", book.id)
-    if book.method == "print":
+    if book.method == "git-rst":
+        pages = git_rst_pages(book, fetcher.cache)
+    elif book.method == "print":
         pages = print_pages(fetcher, book)
     elif book.method == "single":
         pages = single_page(fetcher, book)
