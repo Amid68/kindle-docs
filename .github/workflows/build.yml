@@ -49,9 +49,26 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Abhängigkeiten
+      # pandoc fest gepinnt aus dem GitHub-Release statt apt: der Azure-Mirror hing beim Download.
+      - id: pandoc-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/pandoc
+          key: pandoc-3.12.1-linux-amd64
+
+      - name: pandoc
+        if: steps.pandoc-cache.outputs.cache-hit != 'true'
+        timeout-minutes: 5
         run: |
-          sudo apt-get update -q && sudo apt-get install -y -q pandoc fonts-dejavu-core
+          mkdir -p ~/pandoc
+          curl -fsSL --retry 5 --retry-all-errors --max-time 120 \
+            https://github.com/jgm/pandoc/releases/download/3.12.1/pandoc-3.12.1-linux-amd64.tar.gz \
+            | tar -xz -C ~/pandoc --strip-components 1
+
+      - name: Abhängigkeiten
+        timeout-minutes: 5
+        run: |
+          echo "$HOME/pandoc/bin" >> "$GITHUB_PATH"
           pip install -q -r requirements.txt
 
       - name: Bauen
