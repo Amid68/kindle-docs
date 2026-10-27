@@ -1,0 +1,442 @@
+# Bücher für den Katalog. Jede Seite wird jede Nacht frisch von der Live-Doku gebaut.
+#   method = "crawl" (Standard): Seitenmenü der Doku in Lesereihenfolge abgehen
+#   method = "print": Docsy-Druckansicht (_print), ein ganzer Abschnitt auf einer Seite
+#   method = "single": Doku, die nur aus einer einzigen Seite besteht
+#   follow_content = true: auch Links im Seitentext folgen (Doku ohne Seitenmenü)
+#   scope: nur URLs mit diesem Anfang gehören zum Buch (Standard: Ordner der Start-URL)
+
+categories = [
+  "Kubernetes",
+  "GitOps & CI/CD",
+  "Networking & Ingress",
+  "Storage & Backup",
+  "Infrastructure as Code",
+  "Containers & Linux",
+  "Observability",
+  "Security",
+]
+
+[defaults]
+max_pages = 400
+
+# ---- Kubernetes -------------------------------------------------------
+[[book]]
+id = "kubernetes-concepts"
+title = "Kubernetes Concepts"
+category = "Kubernetes"
+method = "print"
+start = "https://kubernetes.io/docs/concepts/_print/"
+license = "© The Kubernetes Authors, CC BY 4.0."
+
+[[book]]
+id = "kubernetes-tasks"
+title = "Kubernetes Tasks"
+category = "Kubernetes"
+method = "print"
+start = "https://kubernetes.io/docs/tasks/_print/"
+license = "© The Kubernetes Authors, CC BY 4.0."
+
+[[book]]
+id = "kubernetes-tutorials"
+title = "Kubernetes Tutorials"
+category = "Kubernetes"
+method = "print"
+start = "https://kubernetes.io/docs/tutorials/_print/"
+license = "© The Kubernetes Authors, CC BY 4.0."
+
+[[book]]
+id = "kubernetes-setup"
+title = "Kubernetes Setup"
+category = "Kubernetes"
+method = "print"
+start = "https://kubernetes.io/docs/setup/_print/"
+license = "© The Kubernetes Authors, CC BY 4.0."
+
+[[book]]
+id = "kubectl"
+title = "kubectl Reference"
+category = "Kubernetes"
+method = "print"
+start = "https://kubernetes.io/docs/reference/kubectl/_print/"
+license = "© The Kubernetes Authors, CC BY 4.0."
+
+[[book]]
+id = "kustomize"
+title = "Kustomize"
+category = "Kubernetes"
+start = "https://kubectl.docs.kubernetes.io/references/kustomize/"
+scope = "https://kubectl.docs.kubernetes.io/"
+
+[[book]]
+id = "helm"
+title = "Helm"
+category = "Kubernetes"
+start = "https://helm.sh/docs/"
+
+[[book]]
+id = "etcd"
+title = "etcd"
+category = "Kubernetes"
+start = "https://etcd.io/docs/v3.6/"
+
+[[book]]
+id = "talos"
+title = "Talos Linux"
+category = "Kubernetes"
+start = "https://docs.siderolabs.com/talos/latest/"
+scope = "https://docs.siderolabs.com/talos/"
+
+[[book]]
+id = "kind"
+title = "kind"
+category = "Kubernetes"
+start = "https://kind.sigs.k8s.io/"
+scope = "https://kind.sigs.k8s.io/docs/"
+
+[[book]]
+id = "k3s"
+title = "K3s"
+category = "Kubernetes"
+start = "https://docs.k3s.io/"
+
+[[book]]
+id = "crossplane"
+title = "Crossplane"
+category = "Kubernetes"
+start = "https://docs.crossplane.io/latest/"
+
+# ---- GitOps & CI/CD -----------------------------------------------------
+[[book]]
+id = "argocd"
+title = "Argo CD"
+category = "GitOps & CI/CD"
+start = "https://argo-cd.readthedocs.io/en/stable/"
+
+[[book]]
+id = "argo-workflows"
+title = "Argo Workflows"
+category = "GitOps & CI/CD"
+start = "https://argo-workflows.readthedocs.io/en/latest/"
+
+[[book]]
+id = "argo-rollouts"
+title = "Argo Rollouts"
+category = "GitOps & CI/CD"
+start = "https://argo-rollouts.readthedocs.io/en/stable/"
+
+[[book]]
+id = "flux"
+title = "Flux"
+category = "GitOps & CI/CD"
+start = "https://fluxcd.io/flux/"
+
+[[book]]
+id = "tekton"
+title = "Tekton"
+category = "GitOps & CI/CD"
+start = "https://tekton.dev/docs/"
+
+[[book]]
+id = "github-actions"
+title = "GitHub Actions"
+category = "GitOps & CI/CD"
+start = "https://docs.github.com/en/actions"
+scope = "https://docs.github.com/en/actions"
+
+# ---- Networking & Ingress ----------------------------------------------
+[[book]]
+id = "cilium"
+title = "Cilium"
+category = "Networking & Ingress"
+start = "https://docs.cilium.io/en/stable/"
+max_pages = 700
+
+[[book]]
+id = "gateway-api"
+title = "Gateway API"
+category = "Networking & Ingress"
+start = "https://gateway-api.sigs.k8s.io/"
+
+[[book]]
+id = "ingress-nginx"
+title = "Ingress-NGINX"
+category = "Networking & Ingress"
+start = "https://kubernetes.github.io/ingress-nginx/"
+
+[[book]]
+id = "traefik"
+title = "Traefik"
+category = "Networking & Ingress"
+start = "https://doc.traefik.io/traefik/"
+
+[[book]]
+id = "metallb"
+title = "MetalLB"
+category = "Networking & Ingress"
+start = "https://metallb.io/"
+
+[[book]]
+id = "cert-manager"
+title = "cert-manager"
+category = "Networking & Ingress"
+start = "https://cert-manager.io/docs/"
+
+[[book]]
+id = "istio"
+title = "Istio"
+category = "Networking & Ingress"
+start = "https://istio.io/latest/docs/"
+
+[[book]]
+id = "linkerd"
+title = "Linkerd"
+category = "Networking & Ingress"
+start = "https://linkerd.io/docs/overview/"
+scope = "https://linkerd.io/docs/"
+
+[[book]]
+id = "wireguard"
+title = "WireGuard"
+category = "Networking & Ingress"
+method = "single"
+start = "https://www.wireguard.com/quickstart/"
+
+# ---- Storage & Backup ---------------------------------------------------
+[[book]]
+id = "longhorn"
+title = "Longhorn"
+category = "Storage & Backup"
+start = "https://longhorn.io/docs/latest/"
+scope = "https://longhorn.io/docs/"
+
+[[book]]
+id = "rook"
+title = "Rook"
+category = "Storage & Backup"
+start = "https://rook.io/docs/rook/latest-release/Getting-Started/intro/"
+scope = "https://rook.io/docs/rook/latest-release/"
+
+[[book]]
+id = "velero"
+title = "Velero"
+category = "Storage & Backup"
+start = "https://velero.io/docs/main/"
+
+[[book]]
+id = "cloudnative-pg"
+title = "CloudNativePG"
+category = "Storage & Backup"
+start = "https://cloudnative-pg.io/docs/current/"
+
+[[book]]
+id = "ceph"
+title = "Ceph"
+category = "Storage & Backup"
+start = "https://docs.ceph.com/en/latest/"
+
+[[book]]
+id = "openzfs"
+title = "OpenZFS"
+category = "Storage & Backup"
+start = "https://openzfs.github.io/openzfs-docs/"
+
+# ---- Infrastructure as Code ----------------------------------------------
+[[book]]
+id = "terraform"
+title = "Terraform"
+category = "Infrastructure as Code"
+start = "https://developer.hashicorp.com/terraform/docs"
+scope = ["https://developer.hashicorp.com/terraform/docs", "https://developer.hashicorp.com/terraform/language", "https://developer.hashicorp.com/terraform/cli"]
+
+[[book]]
+id = "opentofu"
+title = "OpenTofu"
+category = "Infrastructure as Code"
+start = "https://opentofu.org/docs/"
+
+[[book]]
+id = "ansible"
+title = "Ansible"
+category = "Infrastructure as Code"
+start = "https://docs.ansible.com/projects/ansible/latest/getting_started/index.html"
+scope = "https://docs.ansible.com/projects/ansible/latest/"
+exclude = ["/collections/", "/porting_guides/", "/roadmap/", "/dev_guide/"]
+
+[[book]]
+id = "packer"
+title = "Packer"
+category = "Infrastructure as Code"
+start = "https://developer.hashicorp.com/packer/docs"
+
+# ---- Containers & Linux ---------------------------------------------------
+[[book]]
+id = "docker"
+title = "Docker"
+category = "Containers & Linux"
+start = "https://docs.docker.com/get-started/"
+scope = ["https://docs.docker.com/get-started/", "https://docs.docker.com/engine/", "https://docs.docker.com/build/", "https://docs.docker.com/compose/"]
+
+[[book]]
+id = "podman"
+title = "Podman"
+category = "Containers & Linux"
+start = "https://docs.podman.io/en/latest/"
+follow_content = true
+
+[[book]]
+id = "containerd"
+title = "containerd"
+category = "Containers & Linux"
+start = "https://containerd.io/docs/"
+
+[[book]]
+id = "proxmox"
+title = "Proxmox VE Administration Guide"
+category = "Containers & Linux"
+method = "single"
+start = "https://pve.proxmox.com/pve-docs/pve-admin-guide.html"
+
+[[book]]
+id = "nginx"
+title = "NGINX"
+category = "Containers & Linux"
+start = "https://nginx.org/en/docs/"
+
+[[book]]
+id = "caddy"
+title = "Caddy"
+category = "Containers & Linux"
+start = "https://caddyserver.com/docs/"
+
+[[book]]
+id = "haproxy"
+title = "HAProxy Configuration Manual"
+category = "Containers & Linux"
+method = "single"
+start = "https://docs.haproxy.org/3.2/configuration.html"
+
+[[book]]
+id = "nftables"
+title = "nftables"
+category = "Containers & Linux"
+start = "https://wiki.nftables.org/wiki-nftables/index.php/Main_Page"
+scope = "https://wiki.nftables.org/wiki-nftables/index.php/"
+exclude = ["Special:", "Talk:", "User:", "action=", "File:"]
+
+# ---- Observability -------------------------------------------------------
+[[book]]
+id = "prometheus"
+title = "Prometheus"
+category = "Observability"
+start = "https://prometheus.io/docs/introduction/overview/"
+scope = "https://prometheus.io/docs/"
+
+[[book]]
+id = "grafana"
+title = "Grafana"
+category = "Observability"
+start = "https://grafana.com/docs/grafana/latest/"
+max_pages = 500
+
+[[book]]
+id = "loki"
+title = "Grafana Loki"
+category = "Observability"
+start = "https://grafana.com/docs/loki/latest/"
+
+[[book]]
+id = "opentelemetry"
+title = "OpenTelemetry"
+category = "Observability"
+start = "https://opentelemetry.io/docs/"
+
+# ---- Security --------------------------------------------------------------
+[[book]]
+id = "kubernetes-security"
+title = "Kubernetes Security"
+category = "Security"
+method = "print"
+start = "https://kubernetes.io/docs/concepts/security/_print/"
+license = "© The Kubernetes Authors, CC BY 4.0."
+
+[[book]]
+id = "owasp-top10"
+title = "OWASP Top 10"
+category = "Security"
+start = "https://top10.owasp.org/2025/en/"
+
+[[book]]
+id = "owasp-cheatsheets"
+title = "OWASP Cheat Sheet Series"
+category = "Security"
+start = "https://cheatsheetseries.owasp.org/"
+max_pages = 200
+
+[[book]]
+id = "falco"
+title = "Falco"
+category = "Security"
+start = "https://falco.org/docs/"
+
+[[book]]
+id = "kyverno"
+title = "Kyverno"
+category = "Security"
+start = "https://kyverno.io/docs/"
+
+[[book]]
+id = "gatekeeper"
+title = "OPA Gatekeeper"
+category = "Security"
+start = "https://open-policy-agent.github.io/gatekeeper/website/docs/"
+
+[[book]]
+id = "opa"
+title = "Open Policy Agent"
+category = "Security"
+start = "https://www.openpolicyagent.org/docs"
+
+[[book]]
+id = "trivy"
+title = "Trivy"
+category = "Security"
+start = "https://trivy.dev/docs/latest/guide/"
+scope = "https://trivy.dev/docs/latest/"
+
+[[book]]
+id = "vault"
+title = "HashiCorp Vault"
+category = "Security"
+start = "https://developer.hashicorp.com/vault/docs"
+
+[[book]]
+id = "external-secrets"
+title = "External Secrets Operator"
+category = "Security"
+start = "https://external-secrets.io/latest/"
+
+[[book]]
+id = "sops"
+title = "SOPS"
+category = "Security"
+start = "https://getsops.io/docs/"
+
+[[book]]
+id = "sigstore"
+title = "Sigstore (cosign)"
+category = "Security"
+start = "https://docs.sigstore.dev/"
+
+[[book]]
+id = "keycloak"
+title = "Keycloak Server Administration"
+category = "Security"
+method = "single"
+start = "https://www.keycloak.org/docs/latest/server_admin/index.html"
+
+[[book]]
+id = "nmap"
+title = "Nmap Reference Guide"
+category = "Security"
+start = "https://nmap.org/book/man.html"
+scope = "https://nmap.org/book/man"

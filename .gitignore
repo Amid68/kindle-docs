@@ -1,0 +1,6 @@
+.cache/
+.work/
+site/
+build.log
+changes.txt
+__pycache__/

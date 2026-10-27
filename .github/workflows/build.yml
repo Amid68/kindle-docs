@@ -1,0 +1,72 @@
+name: build
+
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Alle Bücher neu bauen, auch ohne Änderung"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: ["build.py", "books.toml", "epub.css", ".github/workflows/build.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Veröffentlichten Stand holen
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git clone --depth 1 --branch gh-pages "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" site
+          else
+            mkdir site && git -C site init -q -b gh-pages
+            git -C site remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          fi
+
+      - uses: actions/cache@v4
+        with:
+          path: .cache
+          key: http-${{ github.run_id }}
+          restore-keys: http-
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Abhängigkeiten
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q pandoc fonts-dejavu-core
+          pip install -q -r requirements.txt
+
+      - name: Bauen
+        run: python build.py --jobs 8 ${{ inputs.force && '--force' || '' }}
+
+      - name: Veröffentlichen, wenn sich etwas geändert hat
+        run: |
+          cd site
+          touch .nojekyll
+          git add -A
+          if git diff --cached --quiet 2>/dev/null && git rev-parse -q --verify HEAD >/dev/null; then
+            echo "Keine Änderung in der Doku, nichts veröffentlicht." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          echo "Neu gebaut: $(tr '\n' ' ' < ../changes.txt)" >> "$GITHUB_STEP_SUMMARY"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -q --orphan publish
+          git add -A
+          git commit -q -m "Doku-Stand $(date -u +%F)"
+          git push -q -f origin publish:gh-pages

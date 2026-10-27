@@ -1,0 +1,7 @@
+body { line-height: 1.4; }
+pre { white-space: pre-wrap; font-size: 0.8em; border-left: 3px solid #888; padding-left: 0.5em; }
+code { font-size: 0.9em; }
+table { border-collapse: collapse; font-size: 0.85em; }
+td, th { border: 1px solid #999; padding: 0.2em 0.4em; }
+img { max-width: 100%; }
+blockquote, .admonition, .alert { border-left: 3px solid #555; padding-left: 0.6em; margin-left: 0; }
