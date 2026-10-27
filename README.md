@@ -24,10 +24,11 @@ Der GitHub-Workflow `.github/workflows/build.yml` läuft jede Nacht um 02:17 UTC
 1. Er holt den veröffentlichten Stand (Branch `gh-pages`) und den HTTP-Cache der letzten Nacht.
 2. Für jedes Buch mit `git` in `books.toml` fragt er die GitHub-API nach dem letzten Commit im
    Doku-Ordner. Gibt es keinen neuen, wird das Buch übersprungen, ohne die Website abzurufen.
-   Ein Commit gilt erst 6 Stunden nach dem Abruf als sicher (so lange darf der Deploy der Website
-   dauern), und jedes Buch wird spätestens nach 7 Tagen trotzdem neu geprüft.
-3. Alle anderen Bücher: `build.py` geht jede Doku-Seite in Lesereihenfolge ab. Dank ETag/Last-Modified antworten die
-   meisten Server nur mit „unverändert“, das kostet fast nichts.
+   Ein Abruf zählt nur, wenn er mindestens 6 Stunden nach dem letzten Commit lief (so lange darf
+   der Deploy der Website dauern), und jedes Buch wird spätestens nach 7 Tagen trotzdem neu geprüft.
+3. Alle übrigen Bücher (ohne `git` oder mit neuem Commit): `build.py` geht jede Doku-Seite in
+   Lesereihenfolge ab. Dank ETag/Last-Modified antworten die meisten Server nur mit „unverändert“,
+   das kostet fast nichts.
 4. Aus dem bereinigten Text wird ein Fingerabdruck berechnet. Ist er gleich dem veröffentlichten,
    wird das Buch übersprungen: keine Bilder laden, kein pandoc, keine neue Datei.
 5. Nur wenn sich mindestens eine Datei geändert hat, wird `gh-pages` neu veröffentlicht. Ohne
