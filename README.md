@@ -29,7 +29,7 @@ Der GitHub-Workflow `.github/workflows/build.yml` läuft jede Nacht um 02:17 UTC
 4. Nur wenn sich mindestens eine Datei geändert hat, wird `gh-pages` neu veröffentlicht. Ohne
    Änderung passiert nichts.
 
-Eine Änderung an `build.py` oder `epub.css` baut alle Bücher neu, eine Änderung an `books.toml`
+Eine Änderung an `epub.css` oder an `OUTPUT_VERSION` in `build.py` baut alle Bücher neu, eine Änderung an `books.toml`
 nur die betroffenen.
 
 ### Cache

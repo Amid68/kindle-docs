@@ -107,7 +107,7 @@ class Fetcher:
             base = 0.1 if revalidate else self.delay
             self.host_next[host] = time.monotonic() + max(base, self.host_delay.get(host, 0))
 
-    def get(self, url, binary=False):
+    def get(self, url, binary=False, quiet=False):
         key = hashlib.sha1(url.encode()).hexdigest()
         folder = self.cache / ("media" if binary else "pages")
         body_f, meta_f = folder / (key + ".z"), folder / (key + ".json")
@@ -142,7 +142,8 @@ class Fetcher:
             log("using cached copy,", url, "answered", r.status_code if r is not None else err)
             r = None
         elif not ok:
-            log("fetch failed", url, r.status_code if r is not None else err)
+            if not quiet:
+                log("fetch failed", url, r.status_code if r is not None else err)
             return None
         if r is None or (r.status_code == 304 and meta):
             data = zlib.decompress(body_f.read_bytes())
@@ -288,7 +289,7 @@ def sitemap_urls(fetcher, book):
         if sm in seen:
             continue
         seen.add(sm)
-        got = fetcher.get(sm)
+        got = fetcher.get(sm, quiet=True)
         if not got or "<loc>" not in got[1]:
             continue
         for loc in re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", got[1]):
@@ -615,7 +616,9 @@ def make_cover(path, title, category, stamp):
     im.save(path, "JPEG", quality=85)
 
 
-BUILDER_VERSION = hashlib.sha256((ROOT / "build.py").read_bytes() + (ROOT / "epub.css").read_bytes()).hexdigest()
+# Hochzählen, wenn sich am erzeugten EPUB etwas ändert; dann werden alle Bücher neu gebaut.
+OUTPUT_VERSION = "1"
+BUILDER_VERSION = hashlib.sha256((OUTPUT_VERSION + (ROOT / "epub.css").read_text()).encode()).hexdigest()
 
 
 def drop_nav_from_spine(epub):
