@@ -780,6 +780,15 @@ OUTPUT_VERSION = "1"
 BUILDER_VERSION = hashlib.sha256((OUTPUT_VERSION + (ROOT / "epub.css").read_text()).encode()).hexdigest()
 
 
+def content_signature(body):
+    """Nur sichtbarer Text und Bildanzahl: zufällige Attribute (Cloudflare-E-Mail-Schutz, IDs,
+    Asset-Hashes) und Uhrzeiten aus Live-Beispielen (Caddy) sollen keinen Neubau auslösen."""
+    soup = soup_of(body)
+    text = " ".join(soup.get_text(" ").split())
+    text = re.sub(r"\b\d{1,2}:\d{2}:\d{2}\b", "", text)
+    return f"{len(soup.find_all('img'))}\n{text}"
+
+
 def drop_nav_from_spine(epub):
     """Inhaltsverzeichnis nur im Menü des Readers zeigen, nicht als Seiten vor Kapitel 1."""
     tmp = epub.with_suffix(".rezip")
@@ -809,11 +818,12 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
         return None
     body = prepare(book, pages)
     fingerprint = hashlib.sha256("\0".join(
-        [BUILDER_VERSION, book.title, book.cfg["category"], body]).encode()).hexdigest()
+        [BUILDER_VERSION, book.title, book.cfg["category"], content_signature(body)]).encode()).hexdigest()
     out = Path(out_dir) / f"{book.id}.epub"
-    if not force and previous and previous.get("fingerprint") == fingerprint and out.exists():
+    legacy = hashlib.sha256("\0".join([BUILDER_VERSION, book.title, book.cfg["category"], body]).encode()).hexdigest()
+    if not force and previous and previous.get("fingerprint") in (fingerprint, legacy) and out.exists():
         log("unchanged", book.id)
-        return {**previous, "status": "unchanged"}
+        return {**previous, "fingerprint": fingerprint, "status": "unchanged"}
     wd = Path(work_dir) / book.id
     if wd.exists():
         shutil.rmtree(wd)
