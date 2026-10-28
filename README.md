@@ -14,6 +14,9 @@ wenn sich sein Text wirklich geändert hat.
 3. Catalog name: `DevOps Docs`, Catalog URL: `https://amid68.github.io/kindle-docs/catalog.xml`, speichern.
 4. Den neuen Eintrag öffnen, eine Kategorie wählen, ein Buch antippen und **EPUB** wählen.
 
+Jede Download-Adresse trägt die Version (`books/falco.epub?v=…`). Dadurch erkennen KOReaders
+OPDS-Sync und das Bookshelf-Plugin aktualisierte Bücher als neu.
+
 Das Datum auf dem Cover ist der Stand der Doku. Steht im Katalog ein neueres Datum, das Buch einfach
 noch einmal herunterladen und die alte Datei ersetzen lassen.
 
@@ -29,9 +32,11 @@ Der GitHub-Workflow `.github/workflows/build.yml` läuft jede Nacht um 02:17 UTC
 3. Alle übrigen Bücher (ohne `git` oder mit neuem Commit): `build.py` geht jede Doku-Seite in
    Lesereihenfolge ab. Dank ETag/Last-Modified antworten die meisten Server nur mit „unverändert“,
    das kostet fast nichts.
-4. Aus dem bereinigten Text wird ein Fingerabdruck berechnet. Ist er gleich dem veröffentlichten,
+4. Hat keine einzige Seite eines Buchs neuen Inhalt geliefert (nur „304 unverändert“ oder derselbe
+   Text) und ist die Seitenliste gleich, wird das Buch übersprungen, ohne HTML zu verarbeiten.
+5. Sonst wird aus dem bereinigten Text ein Fingerabdruck berechnet. Ist er gleich dem veröffentlichten,
    wird das Buch übersprungen: keine Bilder laden, kein pandoc, keine neue Datei.
-5. Nur wenn sich mindestens eine Datei geändert hat, wird `gh-pages` neu veröffentlicht. Ohne
+6. Nur wenn sich mindestens eine Datei geändert hat, wird `gh-pages` neu veröffentlicht. Ohne
    Änderung passiert nichts.
 
 Eine Änderung an `epub.css` oder an `OUTPUT_VERSION` in `build.py` baut alle Bücher neu, eine Änderung an `books.toml`

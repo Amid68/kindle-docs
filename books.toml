@@ -4,7 +4,7 @@
 #   method = "single": Doku, die nur aus einer einzigen Seite besteht
 #   method = "git-rst": Sphinx-Quellen direkt aus Git (repo, branch/branch_pattern, root, index)
 #   follow_content = true: auch Links im Seitentext folgen (Doku ohne Seitenmenü)
-#   git, git_path, git_branch: Repo und Ordner der Doku-Quellen. Ohne neuen Commit dort wird das
+#   git, git_path, git_branch: Repo und Ordner der Doku-Quellen (git_path auch als Liste). Ohne neuen Commit dort wird das
 #     Buch nachts übersprungen. "{minor}" bzw. "{version}" in Branch und Start-URL wird aus dem letzten Release ergänzt
 #     (release-{minor} -> release-3.5). git_release_repo, wenn die Releases in einem anderen Repo liegen.
 #   scope: nur URLs mit diesem Anfang gehören zum Buch (Standard: Ordner der Start-URL)
@@ -389,7 +389,7 @@ title = "Docker"
 category = "Containers & Linux"
 start = "https://docs.docker.com/get-started/"
 git = "docker/docs"
-git_path = "content/manuals"
+git_path = ["content/get-started", "content/manuals/engine", "content/manuals/build", "content/manuals/compose"]
 git_branch = "main"
 scope = ["https://docs.docker.com/get-started/", "https://docs.docker.com/engine/", "https://docs.docker.com/build/", "https://docs.docker.com/compose/"]
 

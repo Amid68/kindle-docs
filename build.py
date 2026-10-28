@@ -60,6 +60,10 @@ REMOVE_SELECTORS = [
 ]
 
 
+# Ein einziger Selektor statt 58 einzelner: soupsieve ist reines Python, jeder Durchlauf kostet.
+REMOVE_SELECTOR = ", ".join(REMOVE_SELECTORS)
+
+
 def log(*args):
     print(time.strftime("%H:%M:%S"), *args, flush=True)
 
@@ -150,6 +154,8 @@ class Fetcher:
             data = zlib.decompress(body_f.read_bytes())
         elif r.status_code == 200:
             data = r.content
+            if not binary and (not meta or not body_f.exists() or zlib.decompress(body_f.read_bytes()) != data):
+                self.local.changed = getattr(self.local, "changed", 0) + 1
             meta = {"etag": r.headers.get("ETag"), "last_modified": r.headers.get("Last-Modified"),
                     "final_url": r.url, "ctype": r.headers.get("Content-Type", "")}
             body_f.write_bytes(zlib.compress(data, 6))
@@ -198,10 +204,14 @@ class GitWatch:
                 branch = latest_branch(f"https://github.com/{cfg['git']}.git", cfg["branch_pattern"])
             else:
                 branch = self.branch(cfg["git"], cfg.get("git_branch", "main"), cfg.get("git_release_repo"))
-            commits = self._get(f"repos/{cfg['git']}/commits?sha={branch}&path={cfg['git_path']}&per_page=1")
-            c = commits[0]
-            when = dt.datetime.fromisoformat(c["commit"]["committer"]["date"].replace("Z", "+00:00"))
-            return c["sha"], when
+            paths = cfg["git_path"] if isinstance(cfg["git_path"], list) else [cfg["git_path"]]
+            newest = None
+            for path in paths:
+                c = self._get(f"repos/{cfg['git']}/commits?sha={branch}&path={path}&per_page=1")[0]
+                when = dt.datetime.fromisoformat(c["commit"]["committer"]["date"].replace("Z", "+00:00"))
+                if newest is None or when > newest[1]:
+                    newest = (c["sha"], when)
+            return newest
         except Exception as e:
             log(book.id, "git check failed:", repr(e)[:160])
             return None
@@ -644,11 +654,10 @@ def prepare(book, pages):
         content = p["content"]
         for c in content.find_all(string=lambda s: isinstance(s, Comment)):
             c.extract()
-        for sel in REMOVE_SELECTORS:
-            for el in content.select(sel):
-                if el.name == "header" and el.find("h1"):
-                    continue
-                el.decompose()
+        for el in content.select(REMOVE_SELECTOR):
+            if el.decomposed or (el.name == "header" and el.find("h1")):
+                continue
+            el.decompose()
         title, h = page_title(p)
         title = re.sub(r"[\s¶#\uf0c1]+$", "", title)
         if h is not None:
@@ -824,9 +833,10 @@ def drop_nav_from_spine(epub):
     tmp.replace(epub)
 
 
-def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=False):
+def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=False, config_hash=None):
     """Ein Buch crawlen; das EPUB nur neu bauen, wenn sich der bereinigte Text vom veröffentlichten unterscheidet."""
     log("start", book.id)
+    fetcher.local.changed = 0
     if book.method == "git-rst":
         pages = git_rst_pages(book, fetcher.cache)
     elif book.method == "print":
@@ -838,14 +848,21 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
     if not pages:
         log("FAILED (no pages)", book.id)
         return None
+    pages_sig = hashlib.sha256("\n".join(p["key"] for p in pages).encode()).hexdigest()
+    out = Path(out_dir) / f"{book.id}.epub"
+    if (not force and previous and out.exists() and book.method != "git-rst"
+            and fetcher.local.changed == 0 and previous.get("pages_sig") == pages_sig
+            and previous.get("config") == config_hash):
+        log("unchanged (no page changed on the server)", book.id)
+        return {**previous, "status": "unchanged"}
     body = prepare(book, pages)
     fingerprint = hashlib.sha256("\0".join(
         [BUILDER_VERSION, book.title, book.cfg["category"], content_signature(body)]).encode()).hexdigest()
-    out = Path(out_dir) / f"{book.id}.epub"
     legacy = hashlib.sha256("\0".join([BUILDER_VERSION, book.title, book.cfg["category"], body]).encode()).hexdigest()
     if not force and previous and previous.get("fingerprint") in (fingerprint, legacy) and out.exists():
         log("unchanged", book.id)
-        return {**previous, "fingerprint": fingerprint, "status": "unchanged"}
+        return {**previous, "fingerprint": fingerprint, "pages_sig": pages_sig, "config": config_hash,
+                "status": "unchanged"}
     wd = Path(work_dir) / book.id
     if wd.exists():
         shutil.rmtree(wd)
@@ -892,10 +909,13 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
     log(f"built {book.id}: {len(pages)} pages, {words} words, {size // 1024} KB")
     return {"id": book.id, "title": book.title, "category": book.cfg["category"], "source": book.start,
             "pages": len(pages), "words": words, "size": size, "built": stamp, "fingerprint": fingerprint,
+            "pages_sig": pages_sig, "config": config_hash,
             "summary": book.cfg.get("summary", ""), "status": "built"}
 
 
 def opds_entry(b, base):
+    # ?v=<Fingerabdruck>: neue Version, neue Adresse. KOReaders OPDS-Sync merkt sich nur die Adresse
+    # des neuesten Buchs und Bookshelf merkt sich Downloads pro Adresse; beide sehen so Updates.
     upd = b["updated"]
     summary = (f"{b['summary']} " if b.get("summary") else "") + \
         f"Built {b['built']} from {b['source']} ({b['pages']} pages, {b['size'] // 1024} KB)."
@@ -906,7 +926,7 @@ def opds_entry(b, base):
     <author><name>{escape(b['title'])} project</name></author>
     <dc:language>en</dc:language>
     <summary>{escape(summary)}</summary>
-    <link rel="http://opds-spec.org/acquisition" href="{base}books/{b['id']}.epub" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/acquisition" href="{base}books/{b['id']}.epub?v={b.get('fingerprint', '')[:10]}" type="application/epub+zip"/>
     <link rel="http://opds-spec.org/image" href="{base}covers/{b['id']}.jpg" type="image/jpeg"/>
     <link rel="http://opds-spec.org/image/thumbnail" href="{base}covers/{b['id']}.jpg" type="image/jpeg"/>
   </entry>"""
@@ -1026,7 +1046,7 @@ def main():
                 log("unchanged (no new commit)", book.id)
                 skipped.append(book.id)
                 return book, {**previous, "status": "unchanged"}
-            res = build_book(fetcher, book, site / "books", work, stamp, previous, args.force)
+            res = build_book(fetcher, book, site / "books", work, stamp, previous, args.force, config_hash)
             if res and head:
                 git_state[book.id] = {"commit": head[0], "crawled": started.isoformat(), "config": config_hash}
             elif not head:
