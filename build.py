@@ -914,14 +914,14 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
 
 
 def opds_entry(b, base):
-    # ?v=<Fingerabdruck>: neue Version, neue Adresse. KOReaders OPDS-Sync merkt sich nur die Adresse
-    # des neuesten Buchs und Bookshelf merkt sich Downloads pro Adresse; beide sehen so Updates.
+    # Version in Adresse und ID: KOReaders OPDS-Sync merkt sich die Adresse des neuesten Buchs,
+    # Bookshelf merkt sich Downloads pro Eintrags-ID. Mit neuer Version gelten beide als neu.
     upd = b["updated"]
     summary = (f"{b['summary']} " if b.get("summary") else "") + \
         f"Built {b['built']} from {b['source']} ({b['pages']} pages, {b['size'] // 1024} KB)."
     return f"""  <entry>
     <title>{escape(b['title'])}</title>
-    <id>urn:kindle-docs:{b['id']}</id>
+    <id>urn:kindle-docs:{b['id']}:{b.get('fingerprint', '')[:10]}</id>
     <updated>{upd}</updated>
     <author><name>{escape(b['title'])} project</name></author>
     <dc:language>en</dc:language>
