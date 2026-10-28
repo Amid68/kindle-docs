@@ -380,6 +380,9 @@ def crawl(fetcher, book):
         if nxt == start_k:
             rebase_scope(book, final)
             info[page_key(final)] = info[start_k]
+        elif clean_url(final) != clean_url(info[nxt]["url"]) and not book.in_scope(clean_url(final)):
+            pages[nxt] = None
+            continue
         soup = soup_of(text)
         content = find_content(soup, book.cfg.get("content"))
         pages[nxt] = (final, soup, content)
@@ -707,9 +710,28 @@ def prepare(book, pages):
                 pic.decompose()
             else:
                 pic.unwrap()
-        shift = p["level"]
-        for hd in content.find_all(re.compile(r"^h[1-6]$")):
-            hd.name = f"h{min(6, int(hd.name[1]) + shift)}"
+        # Jede Doku-Seite wird eine eigene Kapiteldatei (Seitentitel h1-h3, pandoc teilt bei h3).
+        # Überschriften in der Seite rutschen nach h4-h6, außer die Seite ist so groß, dass sie
+        # selbst geteilt werden muss: große Kapiteldateien legen den Kindle lahm.
+        inner = content.find_all(re.compile(r"^h[1-6]$"))
+        size = len(str(content))
+        shift = 3
+        if size > 200_000 and inner:
+            # Die flachste Überschriftenebene wählen, die die Seite in Teile von etwa 150 KB zerlegt.
+            levels = sorted({int(hd.name[1]) for hd in inner})
+            wanted = size // 150_000 + 1
+            split = next((lv for lv in levels if sum(int(hd.name[1]) <= lv for hd in inner) >= wanted), levels[-1])
+            shift = 3 - split
+        for hd in inner:
+            hd.name = f"h{max(2, min(6, int(hd.name[1]) + shift))}"
+        if shift < 3:
+            # pandoc teilt nur an Überschriften auf oberster Ebene: Hüllen um Abschnitte auflösen.
+            for hd in inner:
+                for parent in list(hd.parents):
+                    if parent is content or parent.name is None:
+                        break
+                    if parent.name in ("div", "section", "article", "main"):
+                        parent.unwrap()
         body.append(f'<h{p["level"]} id="{p["pid"]}">{html.escape(title)}</h{p["level"]}>')
         body.append(content.decode_contents())
     return "\n".join(body)
@@ -776,7 +798,7 @@ def make_cover(path, title, category, stamp):
 
 
 # Hochzählen, wenn sich am erzeugten EPUB etwas ändert; dann werden alle Bücher neu gebaut.
-OUTPUT_VERSION = "1"
+OUTPUT_VERSION = "2"
 BUILDER_VERSION = hashlib.sha256((OUTPUT_VERSION + (ROOT / "epub.css").read_text()).encode()).hexdigest()
 
 
@@ -847,7 +869,7 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
     tmp = out.with_suffix(".epub.part")
     cmd = [
         "pandoc", str(wd / "book.html"), "-f", "html", "-t", "epub3", "-o", str(tmp),
-        "--toc", "--toc-depth=3", "--split-level=1", "--epub-title-page=false", f"--resource-path={wd}",
+        "--toc", "--toc-depth=3", "--split-level=3", "--epub-title-page=false", f"--resource-path={wd}",
         f"--epub-cover-image={cover}", f"--css={ROOT / 'epub.css'}",
         "--metadata", f"title={book.title}",
         "--metadata", f"author={book.cfg.get('author', book.title + ' authors')}",
@@ -861,6 +883,10 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
         log("FAILED (pandoc)", book.id, r.stderr[-800:])
         return None
     drop_nav_from_spine(tmp)
+    with zipfile.ZipFile(tmp) as z:
+        largest = max((i.file_size for i in z.infolist() if i.filename.endswith(".xhtml")), default=0)
+    if largest > 1_000_000:
+        log(f"WARNING {book.id}: largest chapter file is {largest // 1024} KB")
     tmp.replace(out)
     size = out.stat().st_size
     log(f"built {book.id}: {len(pages)} pages, {words} words, {size // 1024} KB")
@@ -982,6 +1008,13 @@ def main():
     state_f = Path(args.cache) / "git-state.json"
     git_state = json.loads(state_f.read_text()) if state_f.exists() else {}
     skipped = []
+
+    for book in books:
+        if any(m in book.start or any(m in sc for sc in book.scopes) for m in ("{minor}", "{version}")):
+            repo = book.cfg.get("git_release_repo") or book.cfg.get("git")
+            book.start = watch.branch(repo, book.start, repo)
+            book.scopes = [watch.branch(repo, sc, repo) for sc in book.scopes]
+            log(book.id, "current version:", book.start)
 
     def run(book):
         try:

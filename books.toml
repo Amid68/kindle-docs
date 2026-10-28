@@ -5,7 +5,7 @@
 #   method = "git-rst": Sphinx-Quellen direkt aus Git (repo, branch/branch_pattern, root, index)
 #   follow_content = true: auch Links im Seitentext folgen (Doku ohne Seitenmenü)
 #   git, git_path, git_branch: Repo und Ordner der Doku-Quellen. Ohne neuen Commit dort wird das
-#     Buch nachts übersprungen. "{minor}" bzw. "{version}" im Branch wird aus dem letzten Release ergänzt
+#     Buch nachts übersprungen. "{minor}" bzw. "{version}" in Branch und Start-URL wird aus dem letzten Release ergänzt
 #     (release-{minor} -> release-3.5). git_release_repo, wenn die Releases in einem anderen Repo liegen.
 #   scope: nur URLs mit diesem Anfang gehören zum Buch (Standard: Ordner der Start-URL)
 
@@ -407,10 +407,10 @@ follow_content = true
 id = "containerd"
 title = "containerd"
 category = "Containers & Linux"
-start = "https://containerd.io/docs/"
-git = "containerd/containerd.io"
-git_path = "content/docs"
-git_branch = "main"
+start = "https://containerd.io/docs/{minor}/"
+git = "containerd/containerd"
+git_path = "docs"
+git_branch = "release/{minor}"
 
 [[book]]
 id = "proxmox"
@@ -480,6 +480,7 @@ id = "opentelemetry"
 title = "OpenTelemetry"
 category = "Observability"
 start = "https://opentelemetry.io/docs/"
+exclude = ["/ecosystem/registry"]
 git = "open-telemetry/opentelemetry.io"
 git_path = "content/en/docs"
 git_branch = "main"
