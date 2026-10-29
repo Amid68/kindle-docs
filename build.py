@@ -493,24 +493,68 @@ def latest_branch(repo, pattern):
     return max(found, key=lambda n: [int(x) for x in re.findall(r"\d+", n)]) if found else None
 
 
+def clone_docs(book, cache_dir):
+    """Doku-Ordner eines Git-Repos flach und sparse klonen; liefert (Ordner, raw-URL-Basis für Bilder)."""
+    cfg = book.cfg
+    repo = cfg["repo"]
+    branch = latest_branch(repo, cfg["branch_pattern"]) if cfg.get("branch_pattern") else cfg.get("branch", "main")
+    root = cfg.get("root", "").strip("/")
+    dest = Path(cache_dir) / "git" / book.id
+    if dest.exists():
+        shutil.rmtree(dest)
+    if root:
+        subprocess.run(["git", "clone", "-q", "--depth", "1", "--filter=blob:none", "--sparse", "--branch", branch,
+                        repo, str(dest)], check=True)
+        subprocess.run(["git", "-C", str(dest), "sparse-checkout", "set", root], check=True)
+    else:
+        subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", branch, repo, str(dest)], check=True)
+    slug = re.sub(r"^https://github.com/|\.git$", "", repo)
+    log(book.id, "from", slug, branch)
+    raw = cfg.get("raw_base") or f"https://raw.githubusercontent.com/{slug}/{branch}/{root + '/' if root else ''}"
+    return (dest / root) if root else dest, raw
+
+
+def git_md_pages(book, cache_dir):
+    """Markdown-Buch aus Git; die Kapitelreihenfolge steht in einer Listendatei (z. B. section_list.txt)."""
+    cfg = book.cfg
+    base, raw = clone_docs(book, cache_dir)
+    names = cfg.get("files") or [line.strip() for line in (base / cfg["order_file"]).read_text().splitlines()]
+    pages = []
+    for name in names:
+        if not name or name.startswith("#") or any(x.search(name) for x in book.exclude):
+            continue
+        f = base / name
+        if not f.exists() or len(pages) >= book.max_pages:
+            continue
+        r = subprocess.run(["pandoc", "-f", cfg.get("markdown_format", "markdown"), "-t", "html", f.name],
+                           cwd=f.parent, capture_output=True, text=True)
+        if r.returncode != 0 or not r.stdout.strip():
+            continue
+        soup = soup_of(f"<html><body><div id='md'>{r.stdout}</div></body></html>")
+        pages.append({"key": f"md:{name}", "url": raw + name, "soup": soup, "content": soup.select_one("#md"),
+                      "level": 1})
+    return pages
+
+
+def listed_pages(fetcher, book):
+    """Feste Liste einzelner Seiten aus verschiedenen offiziellen Quellen, ein Kapitel pro Seite."""
+    pages = []
+    for url in book.cfg["pages"]:
+        got = fetch_page(fetcher, url)
+        if not got:
+            continue
+        soup = soup_of(got[1])
+        pages.append({"key": page_key(got[0]), "url": got[0], "soup": soup,
+                      "content": find_content(soup, book.cfg.get("content")), "level": 1})
+    return pages
+
+
 def git_rst_pages(book, cache_dir):
     """Sphinx-Doku direkt aus dem Git-Repo: toctree-Reihenfolge abgehen, jede Datei mit pandoc wandeln.
 
     Für Seiten, die Anfragen aus Rechenzentren abweisen (docs.ansible.com antwortet GitHub mit 429)."""
     cfg = book.cfg
-    repo = cfg["repo"]
-    branch = latest_branch(repo, cfg["branch_pattern"]) if cfg.get("branch_pattern") else cfg.get("branch", "main")
-    root = cfg["root"].strip("/")
-    dest = Path(cache_dir) / "git" / book.id
-    if dest.exists():
-        shutil.rmtree(dest)
-    subprocess.run(["git", "clone", "-q", "--depth", "1", "--filter=blob:none", "--sparse", "--branch", branch,
-                    repo, str(dest)], check=True)
-    subprocess.run(["git", "-C", str(dest), "sparse-checkout", "set", root], check=True)
-    base = dest / root
-    slug = re.sub(r"^https://github.com/|\.git$", "", repo)
-    raw = f"https://raw.githubusercontent.com/{slug}/{branch}/{root}/"
-    log(book.id, "from", slug, branch)
+    base, raw = clone_docs(book, cache_dir)
 
     order, seen = [], set()
 
@@ -839,6 +883,10 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
     fetcher.local.changed = 0
     if book.method == "git-rst":
         pages = git_rst_pages(book, fetcher.cache)
+    elif book.method == "git-md":
+        pages = git_md_pages(book, fetcher.cache)
+    elif book.method == "pages":
+        pages = listed_pages(fetcher, book)
     elif book.method == "print":
         pages = print_pages(fetcher, book)
     elif book.method == "single":
@@ -851,6 +899,7 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
     pages_sig = hashlib.sha256("\n".join(p["key"] for p in pages).encode()).hexdigest()
     out = Path(out_dir) / f"{book.id}.epub"
     if (not force and previous and out.exists() and book.method != "git-rst"
+            and book.method not in ("git-md",)
             and fetcher.local.changed == 0 and previous.get("pages_sig") == pages_sig
             and previous.get("config") == config_hash):
         log("unchanged (no page changed on the server)", book.id)
@@ -914,14 +963,14 @@ def build_book(fetcher, book, out_dir, work_dir, stamp, previous=None, force=Fal
 
 
 def opds_entry(b, base):
-    # Version in Adresse und ID: KOReaders OPDS-Sync merkt sich die Adresse des neuesten Buchs,
-    # Bookshelf merkt sich Downloads pro Eintrags-ID. Mit neuer Version gelten beide als neu.
+    # Version nur in der Adresse: KOReaders OPDS-Sync merkt sich die Adresse des neuesten Buchs.
+    # Die Eintrags-ID bleibt fest, sonst zeigt Bookshelf nach Updates Bücher doppelt (alte und neue ID).
     upd = b["updated"]
     summary = (f"{b['summary']} " if b.get("summary") else "") + \
         f"Built {b['built']} from {b['source']} ({b['pages']} pages, {b['size'] // 1024} KB)."
     return f"""  <entry>
     <title>{escape(b['title'])}</title>
-    <id>urn:kindle-docs:{b['id']}:{b.get('fingerprint', '')[:10]}</id>
+    <id>urn:kindle-docs:{b['id']}</id>
     <updated>{upd}</updated>
     <author><name>{escape(b['title'])} project</name></author>
     <dc:language>en</dc:language>

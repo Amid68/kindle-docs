@@ -14,9 +14,10 @@ wenn sich sein Text wirklich geändert hat.
 3. Catalog name: `DevOps Docs`, Catalog URL: `https://amid68.github.io/kindle-docs/catalog.xml`, speichern.
 4. Den neuen Eintrag öffnen, eine Kategorie wählen, ein Buch antippen und **EPUB** wählen.
 
-Jede Download-Adresse und jede Eintrags-ID trägt die Version (`books/falco.epub?v=…`). Dadurch
-erkennen KOReaders OPDS-Sync und das Bookshelf-Plugin aktualisierte Bücher als neu: im
-Bookshelf-Regal verliert ein aktualisiertes Buch sein „heruntergeladen“-Zeichen.
+Jede Download-Adresse trägt die Version (`books/falco.epub?v=…`), damit KOReaders OPDS-Sync
+aktualisierte Bücher als neu erkennt. Die Eintrags-ID bleibt dagegen fest: ändert sie sich, zeigt
+das Bookshelf-Plugin ein Buch nach einem Update doppelt (alte und neue ID im Cache). Welche Bücher
+neu sind, steht im Ordner „Recently updated“.
 
 Das Datum auf dem Cover ist der Stand der Doku. Steht im Katalog ein neueres Datum, das Buch einfach
 noch einmal herunterladen und die alte Datei ersetzen lassen.

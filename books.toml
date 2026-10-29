@@ -3,6 +3,8 @@
 #   method = "print": Docsy-Druckansicht (_print), ein ganzer Abschnitt auf einer Seite
 #   method = "single": Doku, die nur aus einer einzigen Seite besteht
 #   method = "git-rst": Sphinx-Quellen direkt aus Git (repo, branch/branch_pattern, root, index)
+#   method = "git-md": Markdown aus Git, Reihenfolge aus order_file oder files = [...] (repo, branch, root)
+#   method = "pages": feste Liste einzelner Seiten (pages = [...]), ein Kapitel pro Seite
 #   follow_content = true: auch Links im Seitentext folgen (Doku ohne Seitenmenü)
 #   git, git_path, git_branch: Repo und Ordner der Doku-Quellen (git_path auch als Liste). Ohne neuen Commit dort wird das
 #     Buch nachts übersprungen. "{minor}" bzw. "{version}" in Branch und Start-URL wird aus dem letzten Release ergänzt
@@ -597,6 +599,129 @@ start = "https://docs.sigstore.dev/"
 git = "sigstore/docs"
 git_path = "content"
 git_branch = "main"
+
+[[book]]
+id = "selinux-notebook"
+title = "SELinux Notebook"
+category = "Security"
+method = "git-md"
+start = "https://github.com/SELinuxProject/selinux-notebook"
+repo = "https://github.com/SELinuxProject/selinux-notebook.git"
+branch = "main"
+root = "src"
+order_file = "section_list.txt"
+exclude = ["^title\\.md$", "^toc\\.md$", "^cover"]
+git = "SELinuxProject/selinux-notebook"
+git_path = "src"
+license = "The SELinux Notebook, SELinux Project contributors."
+
+[[book]]
+id = "apparmor"
+title = "AppArmor"
+category = "Security"
+method = "pages"
+start = "https://apparmor.net/"
+pages = [
+  "https://docs.kernel.org/admin-guide/LSM/apparmor.html",
+  "https://documentation.ubuntu.com/server/how-to/security/apparmor/",
+  "https://wiki.archlinux.org/title/AppArmor",
+  "https://docs.docker.com/engine/security/apparmor/",
+  "https://kubernetes.io/docs/tutorials/security/apparmor/",
+]
+license = "Compiled from the Linux kernel docs, Ubuntu Server docs, ArchWiki (GFDL), Docker docs and Kubernetes docs (CC BY 4.0)."
+
+[[book]]
+id = "apparmor-reference"
+title = "AppArmor Policy Reference"
+category = "Security"
+method = "git-md"
+start = "https://gitlab.com/apparmor/apparmor/-/wikis/Documentation"
+repo = "https://gitlab.com/apparmor/apparmor.wiki.git"
+branch = "master"
+raw_base = "https://gitlab.com/apparmor/apparmor/-/wikis/"
+markdown_format = "gfm"
+files = [
+  "QuickProfileLanguage.md",
+  "AppArmor_Core_Policy_Reference.md",
+  "Profiling_with_tools.md",
+  "Profiling_by_hand.md",
+  "AppArmor_Failures.md",
+  "AbstractionsGuide.md",
+  "AppArmorStacking.md",
+  "AppArmorNamespaces.md",
+  "AppArmor-and-Kubernetes.md",
+  "FAQ.md",
+]
+license = "The AppArmor project wiki."
+
+[[book]]
+id = "seccomp"
+title = "Seccomp"
+category = "Security"
+method = "pages"
+start = "https://docs.kernel.org/userspace-api/seccomp_filter.html"
+pages = [
+  "https://docs.kernel.org/userspace-api/seccomp_filter.html",
+  "https://man7.org/linux/man-pages/man2/seccomp.2.html",
+  "https://man7.org/linux/man-pages/man2/seccomp_unotify.2.html",
+  "https://docs.docker.com/engine/security/seccomp/",
+  "https://kubernetes.io/docs/tutorials/security/seccomp/",
+]
+license = "Compiled from the Linux kernel docs, the Linux man-pages project, Docker docs and Kubernetes docs (CC BY 4.0)."
+
+[[book]]
+id = "linux-lsm"
+title = "Linux Security Modules"
+category = "Security"
+start = "https://docs.kernel.org/admin-guide/LSM/index.html"
+scope = "https://docs.kernel.org/admin-guide/LSM/"
+git = "torvalds/linux"
+git_path = "Documentation/admin-guide/LSM"
+git_branch = "master"
+license = "The Linux kernel documentation, GPL-2.0."
+
+[[book]]
+id = "linux-isolation"
+title = "Linux Isolation Primitives"
+category = "Security"
+method = "pages"
+start = "https://man7.org/linux/man-pages/"
+pages = [
+  "https://man7.org/linux/man-pages/man7/capabilities.7.html",
+  "https://man7.org/linux/man-pages/man7/namespaces.7.html",
+  "https://man7.org/linux/man-pages/man7/user_namespaces.7.html",
+  "https://man7.org/linux/man-pages/man7/pid_namespaces.7.html",
+  "https://man7.org/linux/man-pages/man7/mount_namespaces.7.html",
+  "https://man7.org/linux/man-pages/man7/network_namespaces.7.html",
+  "https://man7.org/linux/man-pages/man7/cgroups.7.html",
+  "https://docs.kernel.org/userspace-api/landlock.html",
+]
+license = "Compiled from the Linux man-pages project and the Linux kernel docs."
+
+[[book]]
+id = "linux-hardening"
+title = "Linux Hardening (ArchWiki)"
+category = "Security"
+method = "pages"
+start = "https://wiki.archlinux.org/title/Security"
+pages = [
+  "https://wiki.archlinux.org/title/Security",
+  "https://wiki.archlinux.org/title/SELinux",
+  "https://wiki.archlinux.org/title/Capabilities",
+  "https://wiki.archlinux.org/title/Firejail",
+  "https://wiki.archlinux.org/title/Bubblewrap",
+  "https://wiki.archlinux.org/title/Audit_framework",
+]
+license = "ArchWiki, GNU FDL 1.3 or later."
+
+[[book]]
+id = "gvisor"
+title = "gVisor"
+category = "Security"
+start = "https://gvisor.dev/docs/"
+git = "google/gvisor"
+git_path = "g3doc"
+git_branch = "master"
 
 [[book]]
 id = "keycloak"
