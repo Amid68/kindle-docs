@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:cat-containers-linux</id>
+  <title>Containers &amp; Linux</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/cat-containers-linux.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Docker</title>
+    <id>urn:kindle-docs:docker</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>Docker project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://docs.docker.com/get-started/ (320 pages, 3787 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/docker.epub?v=f44a1950ff" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/docker.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/docker.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Podman</title>
+    <id>urn:kindle-docs:podman</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>Podman project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://docs.podman.io/en/latest/ (199 pages, 719 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/podman.epub?v=848870d8a9" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/podman.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/podman.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>containerd</title>
+    <id>urn:kindle-docs:containerd</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>containerd project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://containerd.io/docs/2.4/ (46 pages, 544 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/containerd.epub?v=47113f9325" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/containerd.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/containerd.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Proxmox VE Administration Guide</title>
+    <id>urn:kindle-docs:proxmox</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Proxmox VE Administration Guide project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://pve.proxmox.com/pve-docs/pve-admin-guide.html (1 pages, 2974 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/proxmox.epub?v=cf4636923d" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/proxmox.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/proxmox.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>NGINX</title>
+    <id>urn:kindle-docs:nginx</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>NGINX project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://nginx.org/en/docs/ (132 pages, 568 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/nginx.epub?v=e846e6015f" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/nginx.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/nginx.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Caddy</title>
+    <id>urn:kindle-docs:caddy</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Caddy project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://caddyserver.com/docs/ (41 pages, 488 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/caddy.epub?v=a9e55e6941" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/caddy.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/caddy.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>HAProxy Configuration Manual</title>
+    <id>urn:kindle-docs:haproxy</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>HAProxy Configuration Manual project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://docs.haproxy.org/3.2/configuration.html (1 pages, 538 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/haproxy.epub?v=037a624cfc" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/haproxy.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/haproxy.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>nftables (nft manual)</title>
+    <id>urn:kindle-docs:nftables</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>nftables (nft manual) project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://www.netfilter.org/projects/nftables/manpage.html (1 pages, 95 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/nftables.epub?v=d30b050380" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/nftables.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/nftables.jpg" type="image/jpeg"/>
+  </entry>
+</feed>

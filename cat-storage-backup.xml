@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:cat-storage-backup</id>
+  <title>Storage &amp; Backup</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/cat-storage-backup.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Longhorn</title>
+    <id>urn:kindle-docs:longhorn</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Longhorn project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://longhorn.io/docs/latest/ (400 pages, 2572 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/longhorn.epub?v=e5311a0b3a" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/longhorn.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/longhorn.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Rook</title>
+    <id>urn:kindle-docs:rook</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Rook project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://rook.io/docs/rook/latest-release/Getting-Started/intro/ (93 pages, 760 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/rook.epub?v=abd1a5345a" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/rook.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/rook.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Velero</title>
+    <id>urn:kindle-docs:velero</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>Velero project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://velero.io/docs/main/ (59 pages, 479 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/velero.epub?v=c77c22387c" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/velero.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/velero.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>CloudNativePG</title>
+    <id>urn:kindle-docs:cloudnative-pg</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>CloudNativePG project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://cloudnative-pg.io/docs/current/ (65 pages, 1130 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/cloudnative-pg.epub?v=e651b7f90b" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/cloudnative-pg.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/cloudnative-pg.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Ceph</title>
+    <id>urn:kindle-docs:ceph</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>Ceph project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://docs.ceph.com/en/latest/ (400 pages, 3526 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/ceph.epub?v=eae793c7f2" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/ceph.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/ceph.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>OpenZFS</title>
+    <id>urn:kindle-docs:openzfs</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>OpenZFS project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://openzfs.github.io/openzfs-docs/ (400 pages, 1994 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/openzfs.epub?v=2891dcedd0" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/openzfs.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/openzfs.jpg" type="image/jpeg"/>
+  </entry>
+</feed>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:cat-security</id>
+  <title>Security</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/cat-security.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Kubernetes Security</title>
+    <id>urn:kindle-docs:kubernetes-security</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Kubernetes Security project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kubernetes.io/docs/concepts/security/_print/ (19 pages, 190 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kubernetes-security.epub?v=01ca7f7dce" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kubernetes-security.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kubernetes-security.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>OWASP Top 10</title>
+    <id>urn:kindle-docs:owasp-top10</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>OWASP Top 10 project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://top10.owasp.org/2025/en/ (16 pages, 166 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/owasp-top10.epub?v=f5dae7bada" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/owasp-top10.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/owasp-top10.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>OWASP Cheat Sheet Series</title>
+    <id>urn:kindle-docs:owasp-cheatsheets</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>OWASP Cheat Sheet Series project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://cheatsheetseries.owasp.org/ (143 pages, 3211 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/owasp-cheatsheets.epub?v=f6cd92d334" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/owasp-cheatsheets.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/owasp-cheatsheets.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Falco</title>
+    <id>urn:kindle-docs:falco</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Falco project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://falco.org/docs/ (84 pages, 720 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/falco.epub?v=ef72e3d61f" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/falco.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/falco.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Kyverno</title>
+    <id>urn:kindle-docs:kyverno</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Kyverno project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kyverno.io/docs/ (74 pages, 1025 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kyverno.epub?v=ffbb337b7b" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kyverno.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kyverno.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>OPA Gatekeeper</title>
+    <id>urn:kindle-docs:gatekeeper</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>OPA Gatekeeper project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://open-policy-agent.github.io/gatekeeper/website/docs/ (37 pages, 199 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/gatekeeper.epub?v=44ae3254a3" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/gatekeeper.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/gatekeeper.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Open Policy Agent</title>
+    <id>urn:kindle-docs:opa</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>Open Policy Agent project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://www.openpolicyagent.org/docs (293 pages, 3825 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/opa.epub?v=468f399347" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/opa.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/opa.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Trivy</title>
+    <id>urn:kindle-docs:trivy</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Trivy project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://trivy.dev/docs/latest/guide/ (178 pages, 773 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/trivy.epub?v=4eb371a902" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/trivy.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/trivy.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>HashiCorp Vault</title>
+    <id>urn:kindle-docs:vault</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>HashiCorp Vault project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://developer.hashicorp.com/vault/docs (399 pages, 3771 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/vault.epub?v=49d13260f9" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/vault.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/vault.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>External Secrets Operator</title>
+    <id>urn:kindle-docs:external-secrets</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>External Secrets Operator project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://external-secrets.io/latest/ (121 pages, 2310 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/external-secrets.epub?v=d812700a49" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/external-secrets.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/external-secrets.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>SOPS</title>
+    <id>urn:kindle-docs:sops</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>SOPS project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://getsops.io/docs/ (21 pages, 98 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/sops.epub?v=6f0516b19d" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/sops.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/sops.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Sigstore (cosign)</title>
+    <id>urn:kindle-docs:sigstore</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Sigstore (cosign) project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://docs.sigstore.dev/ (72 pages, 479 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/sigstore.epub?v=d94dede79d" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/sigstore.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/sigstore.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>SELinux Notebook</title>
+    <id>urn:kindle-docs:selinux-notebook</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>SELinux Notebook project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://github.com/SELinuxProject/selinux-notebook (61 pages, 1275 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/selinux-notebook.epub?v=b543ddaf3b" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/selinux-notebook.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/selinux-notebook.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>AppArmor</title>
+    <id>urn:kindle-docs:apparmor</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>AppArmor project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://apparmor.net/ (5 pages, 43 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/apparmor.epub?v=260790348f" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/apparmor.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/apparmor.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>AppArmor Policy Reference</title>
+    <id>urn:kindle-docs:apparmor-reference</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>AppArmor Policy Reference project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://gitlab.com/apparmor/apparmor/-/wikis/Documentation (10 pages, 108 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/apparmor-reference.epub?v=ec1c81a49e" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/apparmor-reference.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/apparmor-reference.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Seccomp</title>
+    <id>urn:kindle-docs:seccomp</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>Seccomp project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://docs.kernel.org/userspace-api/seccomp_filter.html (5 pages, 75 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/seccomp.epub?v=e1c8f7e94a" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/seccomp.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/seccomp.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Linux Security Modules</title>
+    <id>urn:kindle-docs:linux-lsm</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>Linux Security Modules project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://docs.kernel.org/admin-guide/LSM/index.html (10 pages, 70 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/linux-lsm.epub?v=ba4bdfd452" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/linux-lsm.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/linux-lsm.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Linux Isolation Primitives</title>
+    <id>urn:kindle-docs:linux-isolation</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>Linux Isolation Primitives project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://man7.org/linux/man-pages/ (8 pages, 130 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/linux-isolation.epub?v=3f5d9dcf62" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/linux-isolation.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/linux-isolation.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Linux Hardening (ArchWiki)</title>
+    <id>urn:kindle-docs:linux-hardening</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>Linux Hardening (ArchWiki) project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://wiki.archlinux.org/title/Security (6 pages, 112 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/linux-hardening.epub?v=793980da06" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/linux-hardening.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/linux-hardening.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>gVisor</title>
+    <id>urn:kindle-docs:gvisor</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>gVisor project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://gvisor.dev/docs/ (48 pages, 454 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/gvisor.epub?v=93bd5beca6" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/gvisor.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/gvisor.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Keycloak Server Administration</title>
+    <id>urn:kindle-docs:keycloak</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Keycloak Server Administration project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://www.keycloak.org/docs/latest/server_admin/index.html (1 pages, 6419 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/keycloak.epub?v=2ba9b23aa1" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/keycloak.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/keycloak.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Nmap Reference Guide</title>
+    <id>urn:kindle-docs:nmap</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Nmap Reference Guide project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://nmap.org/book/man.html (20 pages, 113 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/nmap.epub?v=d6bb1a8391" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/nmap.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/nmap.jpg" type="image/jpeg"/>
+  </entry>
+</feed>

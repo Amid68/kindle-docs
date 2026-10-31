@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:cat-kubernetes</id>
+  <title>Kubernetes</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/cat-kubernetes.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Kubernetes Concepts</title>
+    <id>urn:kindle-docs:kubernetes-concepts</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Kubernetes Concepts project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kubernetes.io/docs/concepts/_print/ (187 pages, 1596 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kubernetes-concepts.epub?v=a05711eb60" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kubernetes-concepts.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kubernetes-concepts.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Kubernetes Tasks</title>
+    <id>urn:kindle-docs:kubernetes-tasks</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>Kubernetes Tasks project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://kubernetes.io/docs/tasks/_print/ (212 pages, 1113 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kubernetes-tasks.epub?v=2d488d2bb7" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kubernetes-tasks.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kubernetes-tasks.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Kubernetes Tutorials</title>
+    <id>urn:kindle-docs:kubernetes-tutorials</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Kubernetes Tutorials project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kubernetes.io/docs/tutorials/_print/ (45 pages, 413 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kubernetes-tutorials.epub?v=fdb1ffb45b" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kubernetes-tutorials.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kubernetes-tutorials.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Kubernetes Setup</title>
+    <id>urn:kindle-docs:kubernetes-setup</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Kubernetes Setup project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kubernetes.io/docs/setup/_print/ (22 pages, 186 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kubernetes-setup.epub?v=954414f7e8" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kubernetes-setup.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kubernetes-setup.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>kubectl Reference</title>
+    <id>urn:kindle-docs:kubectl</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>kubectl Reference project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kubernetes.io/docs/reference/kubectl/_print/ (120 pages, 384 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kubectl.epub?v=4cba69cfa6" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kubectl.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kubectl.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Kustomize</title>
+    <id>urn:kindle-docs:kustomize</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Kustomize project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kubectl.docs.kubernetes.io/references/kustomize/ (191 pages, 563 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kustomize.epub?v=1a00643550" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kustomize.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kustomize.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Helm</title>
+    <id>urn:kindle-docs:helm</id>
+    <updated>2026-10-29T08:27:29Z</updated>
+    <author><name>Helm project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://helm.sh/docs/ (340 pages, 1154 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/helm.epub?v=e756b57638" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/helm.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/helm.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>etcd</title>
+    <id>urn:kindle-docs:etcd</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>etcd project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://etcd.io/docs/v3.6/ (97 pages, 1831 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/etcd.epub?v=40cd64bfa0" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/etcd.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/etcd.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Talos Linux</title>
+    <id>urn:kindle-docs:talos</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>Talos Linux project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://docs.siderolabs.com/talos/latest/ (400 pages, 4066 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/talos.epub?v=e0e929aa95" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/talos.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/talos.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>kind</title>
+    <id>urn:kindle-docs:kind</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>kind project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kind.sigs.k8s.io/ (22 pages, 300 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/kind.epub?v=c875725225" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/kind.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/kind.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>K3s</title>
+    <id>urn:kindle-docs:k3s</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>K3s project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://docs.k3s.io/ (72 pages, 971 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/k3s.epub?v=a756a6eefa" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/k3s.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/k3s.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Crossplane</title>
+    <id>urn:kindle-docs:crossplane</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Crossplane project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://docs.crossplane.io/latest/ (54 pages, 512 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/crossplane.epub?v=1f9a1040ba" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/crossplane.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/crossplane.jpg" type="image/jpeg"/>
+  </entry>
+</feed>

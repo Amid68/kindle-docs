@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:cat-networking-ingress</id>
+  <title>Networking &amp; Ingress</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/cat-networking-ingress.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Cilium</title>
+    <id>urn:kindle-docs:cilium</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Cilium project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://docs.cilium.io/en/stable/ (527 pages, 7863 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/cilium.epub?v=1f46f51ceb" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/cilium.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/cilium.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Gateway API</title>
+    <id>urn:kindle-docs:gateway-api</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Gateway API project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://gateway-api.sigs.k8s.io/ (86 pages, 1180 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/gateway-api.epub?v=7f8a7e0f54" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/gateway-api.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/gateway-api.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Ingress-NGINX</title>
+    <id>urn:kindle-docs:ingress-nginx</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Ingress-NGINX project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://kubernetes.github.io/ingress-nginx/ (63 pages, 789 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/ingress-nginx.epub?v=45a8e5fcb6" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/ingress-nginx.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/ingress-nginx.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Traefik</title>
+    <id>urn:kindle-docs:traefik</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>Traefik project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://doc.traefik.io/traefik/ (282 pages, 1129 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/traefik.epub?v=a18a3ddcfe" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/traefik.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/traefik.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>MetalLB</title>
+    <id>urn:kindle-docs:metallb</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>MetalLB project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://metallb.io/ (23 pages, 231 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/metallb.epub?v=6597972e98" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/metallb.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/metallb.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>cert-manager</title>
+    <id>urn:kindle-docs:cert-manager</id>
+    <updated>2026-10-28T15:19:15Z</updated>
+    <author><name>cert-manager project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://cert-manager.io/docs/ (200 pages, 1425 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/cert-manager.epub?v=d2c69f7a06" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/cert-manager.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/cert-manager.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Istio</title>
+    <id>urn:kindle-docs:istio</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>Istio project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://istio.io/latest/docs/ (372 pages, 4610 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/istio.epub?v=d9fbe76337" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/istio.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/istio.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Linkerd</title>
+    <id>urn:kindle-docs:linkerd</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Linkerd project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://linkerd.io/docs/overview/ (136 pages, 1492 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/linkerd.epub?v=5978b3ace3" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/linkerd.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/linkerd.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>WireGuard</title>
+    <id>urn:kindle-docs:wireguard</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>WireGuard project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://www.wireguard.com/quickstart/ (1 pages, 60 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/wireguard.epub?v=2819dc3a77" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/wireguard.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/wireguard.jpg" type="image/jpeg"/>
+  </entry>
+</feed>

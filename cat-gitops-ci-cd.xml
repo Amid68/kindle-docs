@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:cat-gitops-ci-cd</id>
+  <title>GitOps &amp; CI/CD</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/cat-gitops-ci-cd.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Argo CD</title>
+    <id>urn:kindle-docs:argocd</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Argo CD project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://argo-cd.readthedocs.io/en/stable/ (400 pages, 4897 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/argocd.epub?v=d1b557b173" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/argocd.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/argocd.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Argo Workflows</title>
+    <id>urn:kindle-docs:argo-workflows</id>
+    <updated>2026-10-28T15:19:15Z</updated>
+    <author><name>Argo Workflows project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://argo-workflows.readthedocs.io/en/latest/ (214 pages, 1500 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/argo-workflows.epub?v=de80b31c97" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/argo-workflows.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/argo-workflows.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Argo Rollouts</title>
+    <id>urn:kindle-docs:argo-rollouts</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Argo Rollouts project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://argo-rollouts.readthedocs.io/en/stable/ (121 pages, 1981 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/argo-rollouts.epub?v=3ceee2b93f" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/argo-rollouts.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/argo-rollouts.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Flux</title>
+    <id>urn:kindle-docs:flux</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Flux project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://fluxcd.io/flux/ (338 pages, 2551 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/flux.epub?v=6c5020f6c9" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/flux.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/flux.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Tekton</title>
+    <id>urn:kindle-docs:tekton</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Tekton project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://tekton.dev/docs/ (150 pages, 1133 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/tekton.epub?v=20a1ee833c" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/tekton.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/tekton.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>GitHub Actions</title>
+    <id>urn:kindle-docs:github-actions</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <author><name>GitHub Actions project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-31 from https://docs.github.com/en/actions (207 pages, 2000 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/github-actions.epub?v=6b9a4b7bf0" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/github-actions.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/github-actions.jpg" type="image/jpeg"/>
+  </entry>
+</feed>

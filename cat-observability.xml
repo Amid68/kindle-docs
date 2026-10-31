@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:cat-observability</id>
+  <title>Observability</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/cat-observability.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Prometheus</title>
+    <id>urn:kindle-docs:prometheus</id>
+    <updated>2026-10-30T08:38:08Z</updated>
+    <author><name>Prometheus project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-30 from https://prometheus.io/docs/introduction/overview/ (165 pages, 1661 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/prometheus.epub?v=943c2c5d12" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/prometheus.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/prometheus.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Grafana</title>
+    <id>urn:kindle-docs:grafana</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Grafana project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://grafana.com/docs/grafana/latest/ (499 pages, 16402 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/grafana.epub?v=1838562c0e" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/grafana.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/grafana.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Grafana Loki</title>
+    <id>urn:kindle-docs:loki</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Grafana Loki project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://grafana.com/docs/loki/latest/ (159 pages, 2166 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/loki.epub?v=e28aad451d" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/loki.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/loki.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>OpenTelemetry</title>
+    <id>urn:kindle-docs:opentelemetry</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>OpenTelemetry project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://opentelemetry.io/docs/ (365 pages, 3559 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/opentelemetry.epub?v=8db153e995" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/opentelemetry.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/opentelemetry.jpg" type="image/jpeg"/>
+  </entry>
+</feed>

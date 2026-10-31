@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:cat-infrastructure-as-code</id>
+  <title>Infrastructure as Code</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/cat-infrastructure-as-code.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Terraform</title>
+    <id>urn:kindle-docs:terraform</id>
+    <updated>2026-10-29T23:57:58Z</updated>
+    <author><name>Terraform project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-29 from https://developer.hashicorp.com/terraform/docs (399 pages, 1194 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/terraform.epub?v=e8e69bd6cb" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/terraform.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/terraform.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>OpenTofu</title>
+    <id>urn:kindle-docs:opentofu</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>OpenTofu project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://opentofu.org/docs/ (400 pages, 998 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/opentofu.epub?v=50f8520938" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/opentofu.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/opentofu.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Ansible</title>
+    <id>urn:kindle-docs:ansible</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Ansible project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://docs.ansible.com/projects/ansible/latest/ (99 pages, 519 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/ansible.epub?v=a206e359b5" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/ansible.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/ansible.jpg" type="image/jpeg"/>
+  </entry>
+  <entry>
+    <title>Packer</title>
+    <id>urn:kindle-docs:packer</id>
+    <updated>2026-10-28T01:39:40Z</updated>
+    <author><name>Packer project</name></author>
+    <dc:language>en</dc:language>
+    <summary>Built 2026-10-28 from https://developer.hashicorp.com/packer/docs (400 pages, 1399 KB).</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://amid68.github.io/kindle-docs/books/packer.epub?v=61eebfde6a" type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/image" href="https://amid68.github.io/kindle-docs/covers/packer.jpg" type="image/jpeg"/>
+    <link rel="http://opds-spec.org/image/thumbnail" href="https://amid68.github.io/kindle-docs/covers/packer.jpg" type="image/jpeg"/>
+  </entry>
+</feed>

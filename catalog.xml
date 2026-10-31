@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
+  <id>urn:kindle-docs:catalog</id>
+  <title>DevOps &amp; Security Docs</title>
+  <updated>2026-10-31T08:24:46Z</updated>
+  <author><name>kindle-docs</name></author>
+  <link rel="self" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <link rel="start" href="https://amid68.github.io/kindle-docs/catalog.xml" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+  <entry>
+    <title>Recently updated</title>
+    <id>urn:kindle-docs:recent</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Books whose content changed most recently</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/recent.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>All documentation</title>
+    <id>urn:kindle-docs:all</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">All 71 books</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/all.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>Kubernetes</title>
+    <id>urn:kindle-docs:cat-kubernetes</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Kubernetes Concepts, Kubernetes Tasks, Kubernetes Tutorials, Kubernetes Setup, kubectl Reference, Kustomize, Helm, etcd, Talos Linux, kind, K3s, Crossplane</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/cat-kubernetes.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>GitOps &amp; CI/CD</title>
+    <id>urn:kindle-docs:cat-gitops-ci-cd</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Argo CD, Argo Workflows, Argo Rollouts, Flux, Tekton, GitHub Actions</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/cat-gitops-ci-cd.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>Networking &amp; Ingress</title>
+    <id>urn:kindle-docs:cat-networking-ingress</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Cilium, Gateway API, Ingress-NGINX, Traefik, MetalLB, cert-manager, Istio, Linkerd, WireGuard</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/cat-networking-ingress.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>Storage &amp; Backup</title>
+    <id>urn:kindle-docs:cat-storage-backup</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Longhorn, Rook, Velero, CloudNativePG, Ceph, OpenZFS</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/cat-storage-backup.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>Infrastructure as Code</title>
+    <id>urn:kindle-docs:cat-infrastructure-as-code</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Terraform, OpenTofu, Ansible, Packer</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/cat-infrastructure-as-code.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>Containers &amp; Linux</title>
+    <id>urn:kindle-docs:cat-containers-linux</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Docker, Podman, containerd, Proxmox VE Administration Guide, NGINX, Caddy, HAProxy Configuration Manual, nftables (nft manual)</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/cat-containers-linux.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>Observability</title>
+    <id>urn:kindle-docs:cat-observability</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Prometheus, Grafana, Grafana Loki, OpenTelemetry</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/cat-observability.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+  <entry>
+    <title>Security</title>
+    <id>urn:kindle-docs:cat-security</id>
+    <updated>2026-10-31T08:24:46Z</updated>
+    <content type="text">Kubernetes Security, OWASP Top 10, OWASP Cheat Sheet Series, Falco, Kyverno, OPA Gatekeeper, Open Policy Agent, Trivy, HashiCorp Vault, External Secrets Operator, SOPS, Sigstore (cosign), SELinux Notebook, AppArmor, AppArmor Policy Reference, Seccomp, Linux Security Modules, Linux Isolation Primitives, Linux Hardening (ArchWiki), gVisor, Keycloak Server Administration, Nmap Reference Guide</content>
+    <link rel="subsection" href="https://amid68.github.io/kindle-docs/cat-security.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  </entry>
+</feed>
